@@ -1,0 +1,25 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+ <head>
+  <title>Index of /spruha/assets/scss</title>
+ </head>
+ <body>
+<h1>Index of /spruha/assets/scss</h1>
+  <table>
+   <tr><th valign="top">&nbsp;</th><th><a href="index.html?C=N%3BO=D">Name</a></th><th><a href="index.html?C=M%3BO=A">Last modified</a></th><th><a href="index.html?C=S%3BO=A">Size</a></th><th><a href="index.html?C=D%3BO=A">Description</a></th></tr>
+   <tr><th colspan="5"><hr></th></tr>
+<tr><td valign="top">&nbsp;</td><td><a href="../index.html">Parent Directory</a>       </td><td>&nbsp;</td><td align="right">  - </td><td>&nbsp;</td></tr>
+<tr><td valign="top">&nbsp;</td><td><a href="_variables.scss">_variables.scss</a>        </td><td align="right">2020-11-12 15:56  </td><td align="right">1.8K</td><td>&nbsp;</td></tr>
+<tr><td valign="top">&nbsp;</td><td><a href="bootstrap/index.html">bootstrap/</a>             </td><td align="right">2021-08-06 16:27  </td><td align="right">  - </td><td>&nbsp;</td></tr>
+<tr><td valign="top">&nbsp;</td><td><a href="custom/index.html">custom/</a>                </td><td align="right">2021-08-06 16:27  </td><td align="right">  - </td><td>&nbsp;</td></tr>
+<tr><td valign="top">&nbsp;</td><td><a href="layouts/index.html">layouts/</a>               </td><td align="right">2021-08-06 16:27  </td><td align="right">  - </td><td>&nbsp;</td></tr>
+<tr><td valign="top">&nbsp;</td><td><a href="lib/index.html">lib/</a>                   </td><td align="right">2021-08-06 16:27  </td><td align="right">  - </td><td>&nbsp;</td></tr>
+<tr><td valign="top">&nbsp;</td><td><a href="style.css">style.css</a>              </td><td align="right">2021-08-06 13:10  </td><td align="right">1.0M</td><td>&nbsp;</td></tr>
+<tr><td valign="top">&nbsp;</td><td><a href="style.css.map">style.css.map</a>          </td><td align="right">2021-08-06 13:10  </td><td align="right">535K</td><td>&nbsp;</td></tr>
+<tr><td valign="top">&nbsp;</td><td><a href="style.scss">style.scss</a>             </td><td align="right">2021-01-29 17:23  </td><td align="right">3.8K</td><td>&nbsp;</td></tr>
+<tr><td valign="top">&nbsp;</td><td><a href="template/index.html">template/</a>              </td><td align="right">2021-08-06 16:27  </td><td align="right">  - </td><td>&nbsp;</td></tr>
+<tr><td valign="top">&nbsp;</td><td><a href="util/index.html">util/</a>                  </td><td align="right">2021-08-06 16:27  </td><td align="right">  - </td><td>&nbsp;</td></tr>
+   <tr><th colspan="5"><hr></th></tr>
+</table>
+<address>Apache Server at ajax.spruko.com Port 443</address>
+</body></html>

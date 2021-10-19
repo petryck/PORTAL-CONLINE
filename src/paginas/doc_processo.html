@@ -1,0 +1,298 @@
+<div class="card-body pagina_geral" >
+    <div class="d-lg-flex">
+      <h2 class="main-content-label mb-1">#<%= name %></h2><br>
+      
+      <img src="http://conlinebr.com.br/img/logo/conline.png" style="width: auto;height: 56px;margin-top: 38px;margin-left: -78px;" alt="">
+      <div class="ml-auto" style="margin-top: 24px;">
+        <p class="mb-1">
+         
+          </p>
+        <p class="mb-1">
+        CONLINE SERVIÇO DE LOGÍSTICA INTERNACIONAL
+        </p>
+        <p class="mb-0">
+          RUA SAMUEL HEUSI, 190 - SALA 1203 - CENTRO
+        </p>
+        <p class="mb-0">
+          CNPJ: 25.408.353/0001-56
+        </p>
+      </div>
+    </div>
+    <hr class="mg-b-40">
+    <div class="row ">
+      <div class="col-lg-6">
+        <p class="h3"><span id="tipo_modal"></span></p>
+        <div class="row">
+          <div class="col-6">
+       
+            <strong>Referência</strong>: <span id="referencia"></span>
+            <br>
+            <strong>Vendedor</strong>: <span id="vendedor"></span>
+           
+            
+  
+        </div>
+        <div class="col-6">
+
+           
+      
+        </div>
+        </div>
+        
+       
+      </div>
+      <div class="col-lg-6 text-right">
+        <div class="row">
+          <div class="col-6">
+       
+         
+          
+            
+  
+        </div>
+        <div class="col-6">
+
+            <strong>Data Abertura</strong>: <span id="data_abertura"></span>
+            
+            
+      
+        </div>
+        </div>
+      </div>
+    </div>
+    <hr class="mg-b-20">
+    <div class="row ">
+      <div class="col-lg-6">
+        <div class="row">
+          <div class="col-6">
+       
+            <strong>Cliente</strong>: <span id="cliente"></span>
+            <br>
+            <strong>Agente</strong>: <span id="agente"></span>
+            <br>
+            <strong>Reserva</strong>: <span id="reserva"></span>
+            <br>
+            <strong>HBL</strong>: <span id="hbl"></span>
+            
+           
+            
+  
+        </div>
+        <div class="col-6">
+
+          <strong>Ref. Cliente</strong>: <span id="ref_cliente"></span>
+          <br>
+          <strong>Mercadoria</strong>: <span id="mercadoria"></span>
+      
+        </div>
+        </div>
+        
+       
+      </div>
+
+      <div class="col-lg-6">
+        <div class="row">
+          <div class="col-6">
+       
+            <strong>Origem</strong>: <span id="origem"></span>
+            <br>
+            <strong>Transit Time</strong>: <span id="transitTime"></span>
+            <br>
+            <strong>Peso Bruto</strong>: <span id="peso_bruto"></span>
+            <br>
+            <strong>ETD</strong>: <span id="etd"></span>
+            <br>
+            <strong>Navio</strong>: <span id="navio"></span>
+           
+            
+  
+        </div>
+        <div class="col-6">
+
+          <strong>Destino</strong>: <span id="destino"></span>
+          <br>
+          <strong>Rota</strong>: <span id="transbordo"></span>
+          <br>
+          <strong>Incoterm</strong>: <span id="incoterm"></span>
+          <br>
+          <strong>ETA</strong>: <span id="eta"></span>
+          <br>
+          <strong>Viagem</strong>: <span id="viagem"></span>
+      
+        </div>
+        </div>
+        
+       
+      </div>
+      <div class="col-lg-6 text-right">
+        <div class="row">
+          <div class="col-6">
+       
+         
+          
+            
+  
+        </div>
+        <div class="col-6">
+          
+            
+            
+            
+      
+        </div>
+        </div>
+      </div>
+    </div>
+    <hr class="mg-b-20">
+    <div class="table-responsive mg-t-40 tabela_equipamentos">
+      <p class="h3">Lista de Equipamentos</p>
+      <table class="table table-invoice table-bordered">
+        <thead>
+          <tr>
+            <th class="wd-20p">Quantidade</th>
+            <th class="wd-40p">Equipamento</th>
+            <th class="tx-center">Freetime Origem</th>
+            <th class="tx-right">Freetime Destino</th>
+          </tr>
+        </thead>
+        <tbody class="corpo_equipamento">
+          <tr>
+            <td>1x</td>
+            <td class="tx-12">40 HIGH CUBE</td>
+            <td class="tx-center">5 dias</td>
+            <td class="tx-right"></td>
+          </tr>
+        
+         
+        
+         
+        </tbody>
+      </table>
+    </div>
+  
+
+  </div>
+  <div class="card-footer text-right">
+    <!-- <button type="button" class="btn ripple btn-primary mb-1">
+      <i class="fe fe-credit-card mr-1"></i> Pay Invoice </button>
+    <button type="button" class="btn ripple btn-secondary mb-1">
+      <i class="fe fe-send mr-1"></i> Send Invoice </button> -->
+
+    <button type="button" class="btn ripple btn-info mb-1" onclick="javascript:window.print();">
+      <i class="fe fe-printer mr-1" ></i> Imprimir 
+    </button>
+  </div>
+
+
+  <script>
+   
+$(".pagina_geral").fadeOut(1);
+
+$(".pagina_geral").fadeIn(1500);
+$.ajax({
+          url : "/headcargo_api",
+          type : 'get',
+          data : {
+              ref : '<%= name %>'
+          },
+          dataType: "json",
+          beforeSend : function(){
+          }
+      })
+      .done(function(msg){
+        console.log(msg)
+
+     $('#cliente').html(msg.Cliente)
+     $('#referencia').html(msg.Numero_Processo)
+
+      if(msg.Modalidade == 'IM'){
+        $('#agente').html(msg.Agente_Origem)
+      $('#tipo_modal').html('Importação Marítima')
+  
+     }else if(msg.Modalidade == 'EM'){
+      $('#agente').html(msg.Agente_Destino)
+      $('#tipo_modal').html('Exportação Marítima')
+     
+
+     }else if(msg.Modalidade == 'IA'){
+      $('#agente').html(msg.Agente_Origem)
+      $('#tipo_modal').html('Importação Aérea')
+     }else if(msg.Modalidade == 'EA'){
+      $('#agente').html(msg.Agente_Destino)
+      $('#tipo_modal').html('Exportação Aérea')
+     }else if(msg.Modalidade == 'TE'){
+      $('#agente').html(msg.Agente_Destino)
+      $('#tipo_modal').html('Exportação Terrestre')
+     }else if(msg.Modalidade == 'TI'){
+      $('#agente').html(msg.Agente_Origem)
+      $('#tipo_modal').html('Importação Terrestre')
+     }else if(msg.Modalidade == 'NT'){
+      $('#tipo_modal').html('Nacional Transporte')
+     }
+
+     $('#origem').html(msg.Pais_Origem)
+     $('#destino').html(msg.Pais_Destino_Final)
+     $('#ref_cliente').html(msg.Referencia_Cliente)
+     $('#eta').html(msg.ETA)
+     $('#etd').html(msg.ETD)
+     $('#reserva').html(msg.Numero_Reserva)
+     $('#navio').html(msg.Navio)
+     $('#viagem').html(msg.Viagem_Navio)
+     $('#transitTime').html(msg.Transit_Time+' dia(s)')
+     $('#peso_bruto').html(msg.Peso_bruto)
+     $('#hbl').html(msg.House)
+     $('#mercadoria').html(msg.Mercadoria)
+     $('#incoterm').html(msg.Incoterm)
+     $('#transbordo').html(msg.Rota)
+     $('#vendedor').html(msg.Vendedor)
+
+     console.log(msg.Tipo_Carga)
+
+     if(msg.Tipo_Carga != "Áéreo" && msg.Tipo_Carga != "LCL"){
+
+      $('.tabela_equipamentos').css('display', 'block');
+
+
+      $('.corpo_equipamento').html('');
+
+
+
+    msg.equipamentos.forEach(element => {
+      var saida = '<tr>'
+
+        if(element.Free_Time_House_Origem != ''){
+          element.Free_Time_House_Origem = element.Free_Time_House_Origem+' dia(s)';
+        }
+
+        if(element.Free_Time_House_Destino != ''){
+          element.Free_Time_House_Destino = element.Free_Time_House_Destino+' dia(s)';
+        }
+
+    saida += '<td>'+element.Quantidade+'x </td>'
+    saida += '<td class="tx-12">'+element.Equipamento_Maritimo+'</td>'
+    saida += '<td class="tx-center">'+element.Free_Time_House_Destino+'</td>'
+    saida += '<td class="tx-right">'+element.Free_Time_House_Origem+'</td>'
+    saida += '</tr>'
+
+    $('.corpo_equipamento').append(saida)
+    });
+
+   
+      
+     }else{
+      $('.tabela_equipamentos').css('display', 'none');
+      
+
+     }
+     
+     
+     
+     
+     
+
+
+
+
+      })
+
+  </script>

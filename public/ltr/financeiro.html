@@ -1,0 +1,263 @@
+<!-- saved from url=(0014)about:internet -->
+<!-- Internal DataTables css-->
+<link href="/assets/plugins/datatable/dataTables.bootstrap4.min.css" rel="stylesheet" />
+<link href="/assets/plugins/datatable/responsivebootstrap4.min.css" rel="stylesheet" />
+<link href="/assets/plugins/datatable/fileexport/buttons.bootstrap4.min.css" rel="stylesheet" />
+<!-- Page Header -->
+<div class="page-header">
+    <div>
+      <h2 class="main-content-title tx-24 mg-b-5">Financeiro</h2>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="estatisticas">Menu</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Financeiro</li>
+      </ol>
+    </div>
+    <!-- <div class="d-flex">
+      <div class="justify-content-center">
+        <button type="button" class="btn btn-white btn-icon-text my-2 mr-2">
+          <i class="fe fe-download mr-2"></i> Import </button>
+        <button type="button" class="btn btn-white btn-icon-text my-2 mr-2">
+          <i class="fe fe-filter mr-2"></i> Filter </button>
+        <button type="button" class="btn btn-primary my-2 btn-icon-text">
+          <i class="fe fe-download-cloud mr-2"></i> Download Report </button>
+      </div>
+    </div> -->
+  </div>
+
+  <style>
+    #example-input_filter{
+      display: none;
+    }
+
+    #example-input .child ul{
+      width: 100%;
+    }
+    table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td:first-child::before, table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child::before {
+  
+      top: 19px !important;
+    }
+    
+  </style>
+  <!-- End Page Header -->
+  <!-- Row -->
+  <div class="row row-sm">
+    <div class="col-md-12 col-lg-12">
+      <div class="card custom-card">
+        <div class="card-header  border-bottom-0 pb-0">
+          <div>
+            <div class="d-flex">
+              <label class="main-content-label my-auto pt-2">Faturas</label>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+            <div class="row table-filter">
+                <div class="col-lg-3">
+                  <div class="show-entries">
+                    <span>Exibir</span>
+                    <select id="select_entradas" class="form-control">
+                      <option value="5">5</option>
+                      <option selected value="10">10</option>
+                      <option value="30">30</option>
+                      <option value="50">50</option>
+                    </select>
+                  
+                  </div>
+                </div>
+                <div class="col-lg-9 d-lg-flex">
+                  <div class="d-flex ml-auto mt-4 mr-4 mt-lg-0">
+                    <div class="filter-group">
+                      <input type="text" id="search_table" class="form-control rounded-right-0" placeholder="pesquisar">
+                    </div>
+                    <button type="button" class="btn btn-primary">
+                      <i class="fa fa-search"></i>
+                    </button>
+                  </div>
+                  <div class="d-flex mt-4 mt-lg-0">
+                   
+                    <div class="filter-group ml-3">
+                      <label>Status</label>
+                      <select id="status_tabela" class="form-control">
+                        <option value="">Todos</option>
+                        <option value="Em aberto">Em aberto</option>
+                        <option value="Quitado">Quitado</option>
+                        <option value="Parcialmente quitado">Parcialmente quitado</option>
+                        <option value="Vencido">Vencido</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          <div class="table-responsive border">
+            <table id="example-input" class="table table-bordered text-nowrap">
+                <thead>
+                   <tr>
+                      <th>Fatura</th>
+                      <th>Referência</th>
+                      <th>Valor </th>
+                      <th>Status</th>
+                      <th>Ações</th>
+                      <th></th>
+                   </tr>
+                </thead>
+                <tbody>
+                  
+                   <tr>
+                      <th>00007/21</th>
+                      <td>im0021-21</td>
+                      <td>55.000,00</td>
+                      <td>Em aberto</td>
+                      <td style="min-width: 131px;">
+                        <div class="button-list" style="display: flex;"> 
+                          <button class="btn btn-success btn-with-icon"><i class="ti ti-money"></i>PAGAR</button>
+                          <button style="margin-left:10px;" class="btn btn-success btn-with-icon"><i class="ti ti-printer"></i>PAGAR</button> 
+
+                          <!-- <button class="btn ripple btn-info btn-with-icon"><i class="ti ti-money"></i> Pagar</button>
+                          <button class="btn ripple btn-info btn-with-icon"><i class="ti ti-money"></i> Pagar</button>
+                 
+                          <a href="#" class="btn"><i class="ti ti-money"></i></a> 
+                          <a href="#" class="btn"><i class="ti ti-printer"></i></a>   -->
+                        </div>
+                      </td>
+                      <td style="width: 100%;"> 
+                      <div id="corpo_temp" class="card custom-card corpo_temp">
+
+                      </div>
+                      
+                      </td>
+                      
+                   </tr>
+                  
+                 
+
+                  
+
+                </tbody>
+             </table>  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/assets/plugins/jquery-ui/ui/widgets/datepicker.js"></script>
+  <script src="/assets/plugins/jquery.maskedinput/jquery.maskedinput.js"></script>
+  <script src="/assets/js/select2.js"></script>
+  <script src="/assets/plugins/datatable/jquery.dataTables.min.js"></script>
+  <script src="/assets/plugins/datatable/dataTables.bootstrap4.min.js"></script>
+  <script src="/assets/plugins/datatable/dataTables.responsive.min.js"></script>
+  <script src="/assets/plugins/datatable/fileexport/dataTables.buttons.min.js"></script>
+  <script src="/assets/plugins/datatable/fileexport/buttons.bootstrap4.min.js"></script>
+  <script src="/assets/plugins/datatable/fileexport/jszip.min.js"></script>
+  <script src="/assets/plugins/datatable/fileexport/pdfmake.min.js"></script>
+  <script src="/assets/plugins/datatable/fileexport/vfs_fonts.js"></script>
+  <script src="/assets/plugins/datatable/fileexport/buttons.html5.min.js"></script>
+  <script src="/assets/plugins/datatable/fileexport/buttons.print.min.js"></script>
+  <script src="/assets/plugins/datatable/fileexport/buttons.colVis.min.js"></script>
+
+  <script>
+	/*Input Datatable*/
+
+
+  $.ajax({
+    url: '/doc_financeiro',
+    success: function(data) {
+      $('#corpo_temp').html(data)
+     
+      var table = $('#example-input').DataTable({
+        
+        "bInfo": false,
+        "bLengthChange": false,
+      'columnDefs': [
+         {
+            
+            'render': function(data, type, row, meta){
+               
+               if(type === 'display'){
+                  var api = new $.fn.dataTable.Api(meta.settings);
+
+                  var $el = $('input, select, textarea', api.cell({ row: meta.row, column: meta.col }).node());
+
+                  var $html = $(data).wrap('<div/>').parent();
+
+            
+
+                  if($el.prop('tagName') === 'INPUT'){
+                     $('input', $html).attr('value', $el.val());
+                     if($el.prop('checked')){
+                        $('input', $html).attr('checked', 'checked');
+                     }
+                  } else if ($el.prop('tagName') === 'TEXTAREA'){
+                     $('textarea', $html).html($el.val());
+
+                  } else if ($el.prop('tagName') === 'SELECT'){
+                     $('option:selected', $html).removeAttr('selected');
+                     $('option', $html).filter(function(){
+                        return ($(this).attr('value') === $el.val());
+                     }).attr('selected', 'selected');
+                  }
+
+                  data = $html.html();
+               }
+
+               return data;
+               
+            }
+         }
+      ],
+      'responsive': true,
+      "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.11.2/i18n/pt_br.json"
+        }
+   });
+   table.page.len(10).draw();
+
+    }
+  });
+
+    
+
+
+    $('#select_entradas').on('change', function () {
+      valor = $(this).val();
+      
+        table.page.len(valor).draw();
+    });
+
+    $('#status_tabela').on('change', function () {
+      
+      
+      table
+        .columns( 3 )
+        .search( this.value )
+        .draw();
+    });
+    
+
+    $('#search_table').on('keyup', function () {
+  console.log(this.value)
+      table.search(this.value, true, false).draw();
+
+    });
+
+    
+
+
+  //  $('#example-input tbody').on('keyup change', '.child input, .child select, .child textarea', function(e){
+  //      var $el = $(this);
+  //      var rowIdx = $el.closest('ul').data('dtr-index');
+  //      var colIdx = $el.closest('li').data('dtr-index');
+  //      var cell = table.cell({ row: rowIdx, column: colIdx }).node();
+  //      $('input, select, textarea', cell).val($el.val());
+  //      if($el.is(':checked')){
+  //         $('input', cell).prop('checked', true);
+  //      } else {
+  //         $('input', cell).removeProp('checked');
+  //      }
+  //  });
+   
+
+     
+  </script>
