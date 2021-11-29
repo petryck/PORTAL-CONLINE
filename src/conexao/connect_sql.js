@@ -9,7 +9,7 @@ module.exports = {
         type: 'default',
         options: {
             userName: 'hc_conline_consulta', //update me
-            password: '85DF158A-55ED-42EA-A7DA-F859E6B6D6EA'  //update me
+            password: '3C23D35C-84F4-4205-80A2-D59D58A81BEF'  //update me
         }
     },
     options: {
