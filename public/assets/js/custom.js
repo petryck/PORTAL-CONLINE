@@ -1,5 +1,61 @@
 $(function() {
 	'use strict'
+
+
+if(!localStorage.getItem("info_users_plataforma") || localStorage.getItem("info_users_plataforma") == null){
+	// localStorage.removeItem("token")
+	window.location.href = "./login";
+	
+}else{
+	
+	const db_local = JSON.parse(localStorage.getItem("info_users_plataforma"))[0];
+
+
+$.ajax({
+	type: 'GET',
+	url: '/query_empresa',
+	data: {empresa:db_local['empresa']},
+	contentType: 'application/json',
+	success: function (data) {
+		console.log(data)
+		
+		localStorage.setItem("info_empresa_plataforma",JSON.stringify(data));
+		$('#avatar_empresa').attr('src', data['img'])
+	}
+})
+
+
+
+
+
+
+
+var acessos = db_local.acesso.split(',');
+
+    
+for(var i=0; i<acessos.length; i++) { acessos[i] = +acessos[i]; } 
+
+// ACESSO GERAL - 1
+// ACESSO ADM - 2
+// ACESSO TI - 3
+
+
+acessos.forEach(element => {
+
+    if(element == 3 && acessos.indexOf(3) > -1){
+        // $('#menu_ti_btn').css('display', 'block');
+        console.log('acesso TI')
+      }else if(element == 2 && acessos.indexOf(2) > -1){
+        console.log('acesso ADM')
+      }else if(element == 1 && acessos.indexOf(1) > -1){
+        console.log('Geral')
+      }
+
+});
+}
+
+
+
 	
 	// ______________ PAGE LOADING
 	$("#global-loader").fadeOut("slow");
@@ -350,4 +406,22 @@ $(function() {
 		  });
 		
 		})
+
+$(document).on('click', '#btn_logout', function(e){
+			e.preventDefault()
+	
+
+			// window.location.href = "./login";
+
+
+			localStorage.removeItem("info_users_plataforma");
+
+window.location.href = "./login";
+		
+
+	})
+
+
+
+
 });

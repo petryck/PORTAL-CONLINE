@@ -65,6 +65,13 @@ function call_ajax_page(page) {
 
 }
 
+
+$(document).on("click", ".navegacao", function (e) {
+	e.preventDefault()
+	var page = $(this).attr("href");
+	call_ajax_page(page+".html");
+})
+
 $(document).ready(function () {
 	// var path = window.location.hash.substr(1);
 	// if (path == "home") {

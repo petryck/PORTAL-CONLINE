@@ -268,7 +268,118 @@ router.get('/headcargo', function (req, res) {
 
 });
 
+// INFO EMPRESA
+router.get('/query_empresa', function (req, res) {
 
+  empresa = req.query.empresa;
+ 
+
+  var sql = "SELECT * FROM empresas_logo WHERE id_empresa = "+empresa+" LIMIT 1";
+
+
+  connection.query(sql, function(err2, results){
+    // console.log(sql)
+    // console.log(results)
+   
+
+
+    CONEXA_HEAD.execSql(new Request("SELECT * FROM cad_Pessoa WHERE IdPessoa = "+empresa, function(err, rowCount, rows){
+      if(err) {
+          throw err;
+      }
+  })
+  .on('doneInProc',function(rowCount, more, rows){
+    driver = {};
+
+    rows.forEach(function (column) {
+  
+      column.forEach(function (result) {
+        driver[result.metadata.colName] = result.value;
+      })
+   
+          
+      });
+
+
+      driver['img'] = results[0]['img'];
+      res.json(driver);
+  
+  })
+  );
+       
+  })
+
+  
+
+});
+
+
+// LOGIN PAGE
+router.get('/acessos_empresa', function (req, res) {
+
+  empresa = req.query.empresa;
+
+ 
+
+  var sql = `SELECT * FROM usuarios WHERE empresa = '${empresa}'`;
+
+
+  connection.query(sql, function(err2, results){
+
+    res.json(results);
+       
+  })
+
+});
+
+
+// INFO_USUARIO
+router.get('/info_usuario', function (req, res) {
+
+  id = req.query.id;
+
+ 
+
+  var sql = `SELECT * FROM usuarios WHERE idusuarios = '${id}'`;
+
+
+  connection.query(sql, function(err2, results){
+
+    res.json(results);
+       
+  })
+
+});
+
+
+// LOGIN PAGE
+router.get('/query_login', function (req, res) {
+
+  email = req.query.username;
+  password = req.query.password;
+
+ 
+
+  var sql = `SELECT * FROM usuarios WHERE email = '${email}' AND senha = '${password}' LIMIT 1`;
+
+
+  connection.query(sql, function(err2, results){
+  
+    if(results){
+      if(results.length > 0){
+        res.json(results);
+      
+      }else{
+        res.json('error');
+      }
+    }else{
+      res.json('error');
+    }
+      
+       
+  })
+
+});
 
 // CONSULTA TESTE
 router.get('/consulta', function (req, res) {

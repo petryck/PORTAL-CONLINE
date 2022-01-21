@@ -3,13 +3,23 @@ const mysql = require('mysql');
 module.exports = {
 
     incia_conexao(){
+        // connection = mysql.createConnection({
+        //   host: "sac-chronus.ddns.net",
+        //   user: "root",
+        //   password: "99659819aA",
+        //   database: "sirius",
+        //   charset: "utf8mb4"
+        // });
+        
         connection = mysql.createConnection({
-          host: "sac-chronus.ddns.net",
-          user: "root",
+          host: "ads-con.csvfil6euj3s.sa-east-1.rds.amazonaws.com",
+          user: "ads",
+          port: "3286",
           password: "99659819aA",
-          database: "banco_chronus",
+          database: "sirius",
           charset: "utf8mb4"
         });
+
         
         connection.connect(function(err) {
       

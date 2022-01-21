@@ -36,7 +36,7 @@
             <div class="row align-items-center">
               <div class="offset-xl-3 offset-sm-6 col-xl-8 col-sm-6 col-12 img-bg ">
                 <h4 class="d-flex  mb-3">
-                  <span class="font-weight-bold text-white ">Robson Lamim</span>
+                  <span class="font-weight-bold text-white " id="nome_usuario"></span>
                 </h4>
                 <p class="tx-white-7 mb-1">Faça sua cotação agora <b class="text-warning">rápido</b> e <b class="text-warning">fácil </b>.
               </div>
@@ -1034,3 +1034,12 @@
 <script src="/assets/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
 <!-- Internal Dashboard js-->
 <script src="/assets/js/index.js"></script>
+
+
+<script>
+
+$('#nome_usuario').text(JSON.parse(localStorage.getItem("info_users_plataforma"))[0]['nome'])
+$('#logo_empresa') avatar_empresa
+$('#logo_empresa').attr('src', )
+
+</script>
