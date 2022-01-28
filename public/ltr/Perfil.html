@@ -443,12 +443,17 @@
        </div>
     </div>
 
+    <style>
+       .check-padding{
+         padding-bottom: 10px;
+       }
+    </style>
 
     <div class="modal" id="modaldemo6" style="padding-right: 3px;z-index: 2050 !important;" aria-modal="true" role="dialog">
       <div class="modal-dialog modal-lg" role="document">
          <div class="modal-content modal-content-demo">
             <div class="modal-header">
-               <h6 class="modal-title">Grid Modal</h6>
+               <h6 class="modal-title">Alterar usuário</h6>
                <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">×</span></button> 
             </div>
             <div class="modal-body">
@@ -456,55 +461,84 @@
                   <div class="col-lg-12 col-md-12">
                      <div class="card custom-card">
                         <div class="card-body">
-                           <div>
+                           <!-- <div>
                               <h6 class="main-content-label mb-1">Default Form Input Fields with labels</h6>
                               <p class="text-muted card-sub-title">A form control with labels state.</p>
-                           </div>
-                           <div class="row row-sm">
+                           </div> -->
+                           <div class="row row-sm formulario_usuarios">
                               <div class="col-md-6">
                                  <div class="form-group">
                                     <p class="mg-b-10">Primeiro Nome</p>
-                                    <input type="text" class="form-control" name="example-text-input" placeholder="Name"> 
+                                    <input type="text" class="form-control" name="primeiro_nome" placeholder="Primeiro Nome"> 
                                  </div>
                                  <div class="form-group">
                                     <p class="mg-b-10">Email</p>
-                                    <input type="text" class="form-control" name="example-text-input" placeholder="Name"> 
+                                    <input type="text" class="form-control" name="email" placeholder="Email"> 
                                  </div>
                                  <div class="form-group">
                                     <p class="mg-b-10">Função</p>
-                                    <input type="text" class="form-control" name="example-text-input" placeholder="Name"> 
+                                    <input type="text" class="form-control" name="funcao" placeholder="Função"> 
                                  </div>
                               </div>
                               <div class="col-md-6">
                                  <div class="form-group">
-                                    <p class="mg-b-10">Ultimo Nome</p>
-                                    <input type="text" class="form-control" name="example-text-input" placeholder="Name"> 
+                                    <p class="mg-b-10">Último Nome</p>
+                                    <input type="text" class="form-control" name="ultimo_nome" placeholder="Último Nome"> 
                                  </div>
                                  <div class="form-group">
                                     <p class="mg-b-10">Telefone</p>
-                                    <input type="text" class="form-control" name="example-text-input" placeholder="Name"> 
+                                    <input type="text" class="form-control" name="telefone" placeholder="Telefone"> 
                                  </div>
 
                                  
                                 
                               </div>
                               <div class="col-md-6">
+                               
+                              </div>
+                              <div class="col-md-3">
+                                
+                              </div>
+                              <div class="col-md-3">
                                  <div class="form-group">
-                                    <a class="mg-r-20" href="#">Desativar conta</a> 
+                                    <a class="mg-r-20" id="btn_desativar_conta" href="#">Desativar conta</a> 
                                  </div>
                               </div>
-                              <div class="col-md-6">
-                                 <div class="form-group">
-                                    <a class="mg-r-20" href="#">Desativar conta</a> 
-                                 </div>
-                                 <div class="form-group">
-                                    <a class="mg-r-20" href="#">Desativar conta</a> 
-                                 </div>
-                              </div>
+                              <p class="text-muted card-sub-title" style="margin-left: 10px; padding-bottom: 10px;">Níveis de acesso</p>
                               <div class="col-md-12 ">
-                                 <div class="form-group mb-0">
-                                    <p class="mg-b-10">Message</p>
-                                    <textarea class="form-control" name="example-textarea-input" rows="4" placeholder="text here.."></textarea>
+
+                                 <div class="row row-sm">
+                                    <div class="col-lg-3 check-padding"> 
+                                       <label class="ckbox">
+                                          <input type="checkbox">
+                                          <span>Comercial</span>
+                                       </label> 
+                                    </div>
+                                    <div class="col-lg-3 check-padding"> 
+                                       <label class="ckbox">
+                                          <input type="checkbox">
+                                          <span>Operacional</span>
+                                       </label> 
+                                    </div>
+                                    <div class="col-lg-3 check-padding"> 
+                                       <label class="ckbox">
+                                          <input type="checkbox">
+                                          <span>Documental</span>
+                                       </label> 
+                                    </div>
+                                    <div class="col-lg-3 check-padding" > 
+                                       <label class="ckbox">
+                                          <input type="checkbox">
+                                          <span>Financeiro</span>
+                                       </label> 
+                                    </div>
+
+                                    <div class="col-lg-3 check-padding"> 
+                                       <label class="ckbox">
+                                          <input type="checkbox">
+                                          <span>Administrador</span>
+                                       </label> 
+                                    </div>
                                  </div>
                               </div>
                            </div>
@@ -513,7 +547,7 @@
                   </div>
                </div>
             </div>
-            <div class="modal-footer"> <button class="btn ripple btn-primary" type="button">Save changes</button> <button class="btn ripple btn-secondary" data-dismiss="modal" type="button">Close</button> </div>
+            <div class="modal-footer"> <button class="btn ripple btn-primary" type="button">Salvar</button> <button class="btn ripple btn-secondary" data-dismiss="modal" type="button">Sair</button> </div>
          </div>
       </div>
    </div>
@@ -572,7 +606,7 @@ $.ajax({
             acesso += '<div class="user-lock text-center">'
             acesso += '<div class="dropdown text-right">'
             acesso += '<a href="#" class="option-dots" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fe fe-more-vertical"></i> </a> '
-            acesso += '<div class="dropdown-menu dropdown-menu-right shadow" style=""> <a class="dropdown-item" data-target="#modaldemo6" data-toggle="modal" href="#"><i class="fe fe-eye mr-2"></i> Ver</a> <a class="dropdown-item" href="#"><i class="fe fe-trash-2 mr-2"></i> Remover</a> </div>'
+            acesso += '<div class="dropdown-menu dropdown-menu-right shadow" style=""> <a id="'+element.idusuarios+'" class="dropdown-item btn_ver" href="#"><i class="fe fe-eye mr-2"></i> Ver</a> <a class="dropdown-item" href="#"><i class="fe fe-trash-2 mr-2"></i> Remover</a> </div>'
             acesso += '</div>'
             acesso += '<div class="rounded-circle" style=" background: #25233c;font-size: 35px;color: #fff;text-align: center;line-height: 73px;; width: 70px; height: 70px;margin: 0 auto;"> '+element.nome.charAt(0)+' </div>'
             acesso += '</div>'

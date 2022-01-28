@@ -30,7 +30,7 @@
         <div class="card custom-card">
             <div class="card-body" style="padding-bottom: 0px;">
                 <label><strong>Filtros</strong></label>
-              <form>
+              <form id="form_pesquisa">
                   <!-- <div class="row">
                     <div class="col-md-3">
                         <div class="form-group"> 
@@ -71,24 +71,25 @@
                
                             <div class="col-md-1" style="margin-top: 34px;">
                                 <label class="rdiobox" style="margin-top: 10px;">
-                                    <input name="rdio" type="radio"> <span>Abertura</span>
+                                    <input name="tipo_filtro" value="Abertura" type="radio"> <span>Abertura</span>
                                 </label>
                                 <label class="rdiobox" style="margin-top: 10px;">
                                 
                                 </label>
                                 <label class="rdiobox" style="margin-top: 20px;">
-                                    <input name="rdio" type="radio"> <span>Pagamento</span>
+                                    <input name="tipo_filtro" value="Pagamento"  type="radio"> <span>Pagamento</span>
                                 </label>
                             </div>
                             <div class="col-md-1" style="margin-top: 34px;">
                                 <label class="rdiobox" style="margin-top: 10px;">
-                                    <input name="rdio" type="radio"> <span>ETA</span>
+                                    <input name="tipo_filtro" value="ETA" type="radio"> <span>ETA</span>
+                                    
                                 </label>
                                 <label class="rdiobox" style="margin-top: 10px;">
                                    
                                 </label>
                                 <label class="rdiobox" style="margin-top: 20px;">
-                                    <input name="rdio" type="radio"> <span>ETD</span>
+                                    <input name="tipo_filtro" value="ETD" type="radio"> <span>ETD</span>
                                 </label>
                             </div>
                            
@@ -98,7 +99,7 @@
                                             <div class="input-group-text" style="width: 51px;"> De: 
                                         </div> 
                                     </div> 
-                                    <input type="text" class="form-control input-sm data_mask" name="example-text-input" placeholder="__/__/____"> 
+                                    <input type="text" class="form-control input-sm data_mask" name="data_de" placeholder="__/__/____"> 
                                 </div>
 
                                 <div class="input-group" style="width: 155px;margin-top: 19px;"> 
@@ -106,7 +107,7 @@
                                             <div class="input-group-text"> Até: 
                                         </div> 
                                     </div> 
-                                    <input type="text" class="form-control input-sm data_mask" name="example-text-input" placeholder="__/__/____"> 
+                                    <input type="text" class="form-control input-sm data_mask" name="data_ate" placeholder="__/__/____"> 
                                 </div>
                                 
                               
@@ -115,11 +116,18 @@
                             <div class="col-md-2" style="margin-top: 6px;">
                                 <div class="form-group" style="width: 132px;"> 
                                     <p class="mg-b-10" style="font-size: 13px;">Referencia</p>
-                                    <input type="text" style="margin-top: -10px;" class="form-control input-sm" name="example-text-input" placeholder="Ref. ConLine, Ref. Cliente"> 
+                                 
+
+                                    <select name="referencia" class="form-control select2-search ">
+                                      <option selected value="0"> vazio </option>
+                                   </select>
                                 </div>
                                 <div class="form-group" style="width: 132px;"> 
                                     <p class="mg-b-10" style="font-size: 13px;" >Origem</p>
-                                    <input type="text" style="margin-top: -10px;" class="form-control input-sm" name="example-text-input" placeholder="Origem"> 
+                                    <!-- <input type="text" style="margin-top: -10px;" class="form-control input-sm" name="origem" placeholder="Origem">  -->
+                                    <select name="origem" class="form-control select2-search">
+                                      <option selected value="0"> vazio </option>
+                                   </select>
                                 </div>
                                 
                             </div>
@@ -127,11 +135,17 @@
                             <div class="col-md-2" style="margin-top: 6px;">
                                 <div class="form-group" style="width: 132px;"> 
                                     <p class="mg-b-10" style="font-size: 13px;" >Armador</p>
-                                    <input type="text" style="margin-top: -10px;" class="form-control input-sm" name="example-text-input" placeholder="Referencia"> 
+                                    <!-- <input type="text" style="margin-top: -10px;" class="form-control input-sm" name="armador" placeholder="Referencia">  -->
+                                    <select name="armador" class="form-control select2-search">
+                                      <option selected value="0"> vazio </option>
+                                   </select>
                                 </div>
                                 <div class="form-group" style="width: 132px;"> 
                                     <p class="mg-b-10" style="font-size: 13px;" >Destino</p>
-                                    <input type="text" style="margin-top: -10px;" class="form-control input-sm" name="example-text-input" placeholder="Referencia"> 
+                                    <!-- <input type="text" style="margin-top: -10px;" class="form-control input-sm" name="destino" placeholder="Referencia">  -->
+                                    <select name="destino" class="form-control select2-search">
+                                      <option selected value="0"> vazio </option>
+                                   </select>
                                 </div>
                                 
                             </div>
@@ -139,11 +153,17 @@
                             <div class="col-md-2" style="margin-top: 6px;">
                                 <div class="form-group" style="width: 132px;"> 
                                     <p class="mg-b-10" style="font-size: 13px;" >Importador</p>
-                                    <input type="text" style="margin-top: -10px;" class="form-control input-sm" name="example-text-input" placeholder="Referencia"> 
+                                    <!-- <input type="text" style="margin-top: -10px;" class="form-control input-sm" name="importador" placeholder="Referencia">  -->
+                                    <select name="importador" class="form-control select2-search">
+                                      <option selected value="0"> vazio </option>
+                                   </select>
                                 </div>
                                 <div class="form-group" style="width: 132px;"> 
                                     <p class="mg-b-10" style="font-size: 13px;" >Navio/Viagem</p>
-                                    <input type="text" style="margin-top: -10px;" class="form-control input-sm" name="example-text-input" placeholder="Referencia"> 
+                                    <!-- <input type="text" style="margin-top: -10px;" class="form-control input-sm" name="navio_viagem" placeholder="Referencia">  -->
+                                    <select name="navio_viagem" class="form-control select2-search">
+                                      <option selected value="0"> vazio </option>
+                                   </select>
                                 </div>
                                 
                             </div>
@@ -151,11 +171,17 @@
                             <div class="col-md-2" style="margin-top: 6px;">
                                 <div class="form-group" style="width: 132px;"> 
                                     <p class="mg-b-10" style="font-size: 13px;" >Exportador</p>
-                                    <input type="text" style="margin-top: -10px;" class="form-control input-sm" name="example-text-input" placeholder="Referencia"> 
+                                    <!-- <input type="text" style="margin-top: -10px;" class="form-control input-sm" name="exportador" placeholder="Referencia">  -->
+                                    <select name="exportador" class="form-control select2-search">
+                                      <option selected value="0"> vazio </option>
+                                   </select>
                                 </div>
                                 <div class="form-group" style="width: 132px;"> 
                                     <p class="mg-b-10" style="font-size: 13px;" >Status</p>
-                                    <input type="text" style="margin-top: -10px;" class="form-control input-sm" name="example-text-input" placeholder="Referencia"> 
+                                    <!-- <input type="text" style="margin-top: -10px;" class="form-control input-sm" name="status" placeholder="Referencia">  -->
+                                    <select name="status" class="form-control select2-search">
+                                      <option selected value="0"> vazio </option>
+                                   </select>
                                 </div>
                                 
                             </div>
@@ -163,11 +189,18 @@
                             <div class="col-md-2" style="margin-top: 6px;">
                                 <div class="form-group" style="width: 132px;"> 
                                     <p class="mg-b-10" style="font-size: 13px;" >Mercadoria</p>
-                                    <input type="text" style="margin-top: -10px;" class="form-control input-sm" name="example-text-input" placeholder="Referencia"> 
+                                    <!-- <input type="text" style="margin-top: -10px;" class="form-control input-sm" name="mercadoria" placeholder="Referencia">  -->
+                                    <select name="mercadoria" class="form-control select2-search">
+                                      <option selected value="0"> vazio </option>
+                                   </select>
                                 </div>
                                 <div class="form-group" style="width: 132px;"> 
                                     <p class="mg-b-10" style="font-size: 13px;" >Equipamento</p>
-                                    <input type="text" style="margin-top: -10px;" class="form-control input-sm" name="example-text-input" placeholder="Referencia"> 
+                                    <!-- <input type="text" style="margin-top: -10px;" class="form-control input-sm" name="equipamento" placeholder="Referencia"> -->
+                                    
+                                    <select name="equipamento" class="form-control select2-search">
+                                      <option selected value="0"> vazio </option>
+                                   </select>
                                 </div>
                                 
                             </div>
@@ -175,11 +208,18 @@
                             <div class="col-md-2" style="margin-top: 6px;">
                                 <div class="form-group" style="width: 132px;"> 
                                     <p class="mg-b-10" style="font-size: 13px;" >HBL</p>
-                                    <input type="text" style="margin-top: -10px;" class="form-control input-sm" name="example-text-input" placeholder="Referencia"> 
+                                    <!-- <input type="text" style="margin-top: -10px;" class="form-control input-sm" name="hbl" placeholder="Referencia">  -->
+                                    <select name="hbl" class="form-control select2-search">
+                                      <option selected value="0"> vazio </option>
+                                   </select>
                                 </div>
                                 <div class="form-group" style="width: 132px;"> 
                                     <p class="mg-b-10" style="font-size: 13px;" >Booking</p>
-                                    <input type="text" style="margin-top: -10px;" class="form-control input-sm" name="example-text-input" placeholder="Referencia"> 
+                                    <!-- <input type="text" style="margin-top: -10px;" class="form-control input-sm" name="booking" placeholder="Referencia"> -->
+                                    
+                                    <select name="booking" class="form-control select2-search">
+                                      <option selected value="0"> vazio </option>
+                                   </select>
                                 </div>
                                 
                             </div>
@@ -198,7 +238,7 @@
                   </div>
                   <div class="row" style="margin-top: 10px;">
                     <div class="col-12" >
-                      <button style="width: 100%;height: 100%;" class="btn btn-ripple btn-primary btn-icon"> <i class="fe fe-search"></i></button>
+                      <button type="submit" style="width: 100%;height: 100%;" class="btn btn-ripple btn-primary btn-icon"> <i class="fe fe-search"></i></button>
                       </div>
                   </div>
              
@@ -265,6 +305,7 @@
   <script src="/assets/plugins/clipboard/clipboard.js"></script>
   <script src="/assets/plugins/prism/prism.js"></script>
   <script src="/assets/js/tooltip.js"></script>
+  <script src="/assets/js/select2.js"></script>
 
 
 
@@ -274,23 +315,104 @@
 
 
 
+
+$(document).on('submit', '#form_pesquisa', function(e){
+  e.preventDefault()
+
+  console.log($(this).serialize())
+
+})
+
+
+
+
       $('.data_mask').mask('99/99/9999');
 
 
 
+    db_local = JSON.parse(localStorage.getItem("info_users_plataforma"))[0];
 
-$.ajax({
+
+    
+
+
+    $.ajax({
+          url : "/headrcargo_criar_filtros",
+          type : 'get',
+          data : {
+              empresa : db_local['empresa']
+          },
+          dataType: "json",
+          beforeSend : function(){
+          }
+      }).done(function(msg){
+
+msg.Referencia.forEach(element => {
+  option = '<option value="'+element+'" >'+element+'</option>';
+  $("#form_pesquisa select[name=referencia]").append(option); 
+});
+
+msg.Destino_Final.forEach(element => {
+  option = '<option value="'+element+'" >'+element+'</option>';
+  $("#form_pesquisa select[name=destino]").append(option); 
+});
+
+msg.Origem.forEach(element => {
+  option = '<option value="'+element+'" >'+element+'</option>';
+  $("#form_pesquisa select[name=origem]").append(option); 
+});
+
+msg.Cia_Transporte.forEach(element => {
+  option = '<option value="'+element+'">'+element+'</option>';
+  $("#form_pesquisa select[name=armador]").append(option); 
+});
+
+
+msg.House.forEach(element => {
+  option = '<option value="'+element+'" >'+element+'</option>';
+  $("#form_pesquisa select[name=hbl]").append(option); 
+});
+
+
+msg.Mercadoria.forEach(element => {
+  option = '<option value="'+element+'" >'+element+'</option>';
+  $("#form_pesquisa select[name=mercadoria]").append(option); 
+});
+
+
+
+msg.Viagem_Navio.forEach(element => {
+  option = '<option value="'+element+'" >'+element+'</option>';
+  $("#form_pesquisa select[name=navio_viagem]").append(option); 
+});
+
+
+
+
+
+
+
+
+
+carrega_processos()
+
+      })
+
+      
+function carrega_processos(){
+  $.ajax({
           url : "/headcargo_api_all",
           type : 'get',
           data : {
-              ref : 'all'
+              ref : db_local['empresa'],
+              tipo : 'cliente'
           },
           dataType: "json",
           beforeSend : function(){
           }
       })
       .done(function(msg){
-        console.log(msg)
+    
 
         $('.lista_processos').html('')
         msg.forEach(element => {
@@ -345,6 +467,7 @@ $.ajax({
         $('[data-toggle="tooltip"]').tooltip()
         
       })
+}
 
      
   </script>

@@ -80,15 +80,156 @@ router.get('/doc_financeiro', function (req, res) {
 });
 
 
+router.get('/headrcargo_criar_filtros', function (req, res) {
+  
+  let empresa = req.query.empresa;
+  console.log(empresa)
+  sql = `SELECT * FROM vis_Tracking_Portal WHERE IdCliente = ${empresa} ORDER BY Data_Abertura_Convertido DESC`
+  var trans = {};
+  trans['Numero_Processo'] = [];
+  trans['Mercadoria'] = [];
+  trans['Viagem_Navio'] = [];
+  trans['Cia_Transporte'] = [];
+  trans['Referencia'] = [];
+  trans['Destino_Final'] = [];
+  trans['Origem'] = [];
+  trans['House'] = [];
+  trans['Numero_Reserva'] = [];
+  
+  
+  
+
+  CONEXA_HEAD.execSql(new Request(sql, function(err, rowCount, rows){
+    if(err) {
+        throw err;
+    }
+}).on('doneInProc',function(rowCount_transbodo, more2, rows_transbodo){
+  var contun2 = 0;
+  rows_transbodo.forEach(function (column_trans) {
+    
+    column_trans.forEach(function (column_trans_entro) {
+      // console.log(column_trans_entro.metadata.colName)
+
+      if(column_trans_entro.value == null){
+        column_trans_entro.value = '';
+      }
+      
+      if(column_trans_entro.metadata.colName == 'Numero_Processo'){
+        trans['Numero_Processo'].push(column_trans_entro.value)
+        // trans[contun2]['Numero_Processo'] = column_trans_entro.value;
+      
+      }
+
+      if(column_trans_entro.metadata.colName == 'Mercadoria'){
+
+        if(!trans['Mercadoria'].includes(column_trans_entro.value)){
+          trans['Mercadoria'].push(column_trans_entro.value)
+        }
+        
+        // trans[contun2]['Mercadoria'] = column_trans_entro.value;
+  
+      }
+
+      
+
+      if(column_trans_entro.metadata.colName == 'Viagem_Navio' || column_trans_entro.metadata.colName == 'Navio'){
+        if(!trans['Viagem_Navio'].includes(column_trans_entro.value)){
+          trans['Viagem_Navio'].push(column_trans_entro.value)
+        }
+      
+      }
+
+      if(column_trans_entro.metadata.colName == 'Cia_Transporte'){
+        if(!trans['Cia_Transporte'].includes(column_trans_entro.value)){
+          trans['Cia_Transporte'].push(column_trans_entro.value)
+        }
+      
+      }
+
+      if(column_trans_entro.metadata.colName == 'Referencia_Cliente'){
+        
+
+        if(!trans['Referencia'].includes(column_trans_entro.value)){
+          trans['Referencia'].push(column_trans_entro.value)
+        }
+    
+      }
+
+      if(column_trans_entro.metadata.colName == 'Referencia'){
+        
+
+        if(!trans['Referencia'].includes(column_trans_entro.value)){
+          trans['Referencia'].push(column_trans_entro.value)
+        }
+    
+      }
+
+      if(column_trans_entro.metadata.colName == 'Destino_Final'){
+
+        if(!trans['Destino_Final'].includes(column_trans_entro.value)){
+          trans['Destino_Final'].push(column_trans_entro.value)
+        }
+   
+      }
+
+      if(column_trans_entro.metadata.colName == 'Origem'){
+       
+
+        if(!trans['Origem'].includes(column_trans_entro.value)){
+          trans['Origem'].push(column_trans_entro.value)
+        }
+     
+      }
+
+      if(column_trans_entro.metadata.colName == 'Numero_Reserva'){
+        
+        if(!trans['Numero_Reserva'].includes(column_trans_entro.value)){
+          trans['Numero_Reserva'].push(column_trans_entro.value)
+        }
+      }
+
+      if(column_trans_entro.metadata.colName == 'House'){
+
+        if(!trans['House'].includes(column_trans_entro.value)){
+          trans['House'].push(column_trans_entro.value)
+        }
+       
+   
+      }
+
+      
+   
+      // trans[contun2][column_trans_entro.metadata.colName] = column_trans_entro.value;
+
+      // console.log(column_trans_entro.metadata.colName, column_trans_entro.value)
+    });
+
+    contun2 = contun2 + 1;
+  })
+
+  
+
+}).on('requestCompleted',function(rowCount, more, rows){
+   
+  res.json(trans);
+  
+}));
+
+
+})
+
 
 router.get('/headcargo_api_all', function (req, res) {
   let referencia = req.query.ref;
+  let tipo = req.query.tipo;
 
-  if(referencia == null || referencia == '' || referencia == undefined || referencia == 'all'){
+  if(tipo == null || tipo == '' || tipo == undefined || tipo == 'all'){
     sql = `SELECT * FROM vis_Tracking_Portal WHERE Numero_Processo = 'EM0150-21'`
     // sql = `SELECT TOP 100 * FROM vis_Tracking_Portal ORDER BY IdLogistica_House DESC`
+  }else if(tipo = 'cliente'){
+    sql = `SELECT * FROM vis_Tracking_Portal WHERE IdCliente = ${referencia} ORDER BY Data_Abertura_Convertido DESC`
   }else{
-
+    sql = `SELECT * FROM vis_Tracking_Portal WHERE Numero_Processo = 'EM0150-21'`
   }
   var trans = [];
 
@@ -131,6 +272,13 @@ router.get('/headcargo_api_all', function (req, res) {
 
   
 })
+
+
+
+
+
+
+
 router.get('/headcargo_api', function (req, res) {
   let referencia = req.query.ref;
 
@@ -268,6 +416,22 @@ router.get('/headcargo', function (req, res) {
 
 });
 
+
+// INFO COLABORADORES
+router.get('/info_acessos', function (req, res) {
+
+   id = req.query.id;
+
+   var sql = "SELECT * FROM usuarios WHERE idusuarios = "+id+" LIMIT 1";
+
+
+  connection.query(sql, function(err2, results){
+    res.json(results);
+  })
+
+  
+
+});
 // INFO EMPRESA
 router.get('/query_empresa', function (req, res) {
 
@@ -301,8 +465,14 @@ router.get('/query_empresa', function (req, res) {
       });
 
 
-      driver['img'] = results[0]['img'];
-      res.json(driver);
+      if(results.length != undefined && results.length > 0){
+        driver['img'] = results[0]['img'];
+        res.json(driver);
+      }else{
+        driver['img'] = '';
+        res.json(driver);
+      }
+      
   
   })
   );

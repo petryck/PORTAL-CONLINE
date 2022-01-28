@@ -10,6 +10,7 @@ if(!localStorage.getItem("info_users_plataforma") || localStorage.getItem("info_
 	
 	const db_local = JSON.parse(localStorage.getItem("info_users_plataforma"))[0];
 
+	$('#nome_usuario_logado').text(db_local['nome'])
 
 $.ajax({
 	type: 'GET',
@@ -20,6 +21,10 @@ $.ajax({
 		console.log(data)
 		
 		localStorage.setItem("info_empresa_plataforma",JSON.stringify(data));
+		
+		$('#nome_empresa_user').text(data['Nome_Fantasia'])
+		
+		
 		$('#avatar_empresa').attr('src', data['img'])
 	}
 })
@@ -55,7 +60,35 @@ acessos.forEach(element => {
 }
 
 
+$(document).on('click', '.btn_ver', function(e) {
+	e.preventDefault()
+    var id = $(this).attr('id');
 
+	$.ajax({
+		type: 'GET',
+		url: '/info_acessos',
+		data: {id:id},
+		contentType: 'application/json',
+		success: function (data) {
+
+
+			$(".formulario_usuarios input[name=primeiro_nome]").val(data[0]['nome']);
+			$(".formulario_usuarios input[name=email]").val(data[0]['email']);
+			$(".formulario_usuarios input[name=funcao]").val(data[0]['funcao']);
+			$(".formulario_usuarios input[name=ultimo_nome]").val(data[0]['ultimo_nome']);
+			$(".formulario_usuarios input[name=telefone]").val(data[0]['telefone']);
+
+			
+
+			$("#btn_desativar_conta").attr('id', data[0]['idusuarios']);
+			
+			$('#modaldemo6').modal('show');
+
+		}
+		})
+
+	
+});
 	
 	// ______________ PAGE LOADING
 	$("#global-loader").fadeOut("slow");
@@ -372,6 +405,12 @@ acessos.forEach(element => {
 	    $('body').removeClass('color-header');
 	  return false;
 	});
+
+	$('.select2-search').select2({
+		placeholder: 'Escolha um',
+		searchInputPlaceholder: 'Pesquisar',
+		 width: '100%'
+	});
 	
 	$('#background8').on('click', function() {
 	  $('body').addClass('light-horizontal');
@@ -390,7 +429,7 @@ acessos.forEach(element => {
 
 	$(document).on('click', '.teteu_e_o_brabo', function(e){
 		e.preventDefault()
-		console.log('clicou')
+	
 		var id_ref = $(this).attr('id');
 		
 		
