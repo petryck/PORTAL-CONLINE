@@ -1191,7 +1191,7 @@ calculo = (element.processos*100)/calcular_total;
 var nomes_ = '<div class="mb-4 pt-2">'
     nomes_ += '<h5 class="mb-2 d-block">'
     nomes_ += '<span class="fs-14">'+element.name+'</span>'
-    nomes_ += '<span class="float-right fs-14">'+Math.round(calculo)+'%</span>'
+    nomes_ += '<span class="float-right fs-14">'+calculo.toFixed(2)+' %</span>'
     nomes_ += '</h5>'
     nomes_ += '<div class="progress ht-4 progress-md h-2">'
     nomes_ += '<div class="progress-bar progress-bar-animated progress-bar-striped bg-primary ht-4" style="width: '+Math.round(calculo)+'%;" ></div>'

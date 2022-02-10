@@ -206,7 +206,42 @@ router.get('/estatisticas_paises', function (req, res) {
   trans = [];
   saida = [];
 
-    sql = `SELECT * FROM vis_Tracking_Portal_Mes_Pais WHERE IdCliente = '`+empresa+`' ORDER BY QtdProcessoTotal DESC`;
+    // sql = `SELECT * FROM vis_Tracking_Portal_Mes_Pais WHERE IdCliente = '`+empresa+`' ORDER BY QtdProcessoTotal DESC`;
+
+
+    sql = `Select
+    Pod.IdPais,
+    Pod.Nome_Internacional as Pais,
+    Concat('[', Pod.Latitude, ',', Pod.Logitude, ']') as Coordenadas,
+    Pod.Latitude,
+    Pod.Logitude,
+    Count(Lhs.IdLogistica_House) as QtdProcessoTotal
+  FROM
+    mov_Logistica_House Lhs
+    JOIN vis_Cliente Clt on Clt.IdPessoa = Lhs.IdCliente
+    Left Outer JOIN (
+      Select
+        Lms.IdLogistica_Master,
+        CASE
+          When Lms.Tipo_Operacao = 1 Then Lms.IdDestino_Final
+          Else Lms.IdOrigem
+        End as IdOrigem_Destino
+      From
+        mov_Logistica_Master Lms
+    ) Ord on Ord.IdLogistica_Master = Lhs.IdLogistica_Master
+    Left Outer JOIN cad_Origem_Destino Ods on Ods.IdOrigem_Destino = Ord.IdOrigem_Destino
+    Left Outer JOIN cad_Pais Pod on Pod.IdPais = Ods.IdPais
+  WHERE
+    Lhs.Numero_Processo not like '%test%'
+    AND Lhs.Situacao_Agenciamento not in (7)
+    AND (IdCliente = '`+empresa+`' OR IdImportador = ${empresa} OR IdExportador = ${empresa})
+  GROUP BY
+    Pod.Nome_Internacional,
+    Pod.IdPais,
+    Pod.Latitude,
+    Pod.Logitude
+    ORDER BY QtdProcessoTotal DESC`;
+
 
   CONEXA_HEAD.execSql(new Request(sql, function(err, rowCount, rows){
     if(err) {
@@ -324,7 +359,113 @@ router.get('/estatisticas', function (req, res) {
 
   trans = [];
 
-    sql = `SELECT * FROM vis_Tracking_Portal_Mes WHERE IdCliente = '`+empresa+`' ORDER BY Ano_Proposta, Mes_Proposta ASC`;
+    // sql = `SELECT * FROM vis_Tracking_Portal_Mes WHERE IdCliente = '`+empresa+`' ORDER BY Ano_Proposta, Mes_Proposta ASC`;
+
+    sql = `Select
+    Count(Lhs.IdLogistica_House) as QtdProcessoTotal,
+    Sum(
+      Case
+        When Lms.Situacao_Embarque = 0 Then 1
+        else 0
+      End
+    ) as QtdPreProcesso,
+    Sum(
+      Case
+        When Lms.Situacao_Embarque in (1,0,5,6,7,8,9,10,11,12,4) Then 1
+        else 0
+      End
+    ) as QtdAgEmbarque,
+    Sum(
+      Case
+        When Lms.Situacao_Embarque = 2 Then 1
+        else 0
+      End
+    ) as QtdEmbarcado,
+    Sum(
+      Case
+        When Lms.Situacao_Embarque = 3 Then 1
+        else 0
+      End
+    ) as QtdDesembarcado,
+    Sum(
+      Case
+        When Lms.Situacao_Embarque = 4 Then 1
+        else 0
+      End
+    ) as QtdCancelado,
+    Sum(
+      Case
+        When Lms.Situacao_Embarque = 5 Then 1
+        else 0
+      End
+    ) as QtdPendente,
+    Sum(
+      Case
+        When Lms.Situacao_Embarque = 6 Then 1
+        else 0
+      End
+    ) as QtdAutorizado,
+    Sum(
+      Case
+        When Lms.Situacao_Embarque = 7 Then 1
+        else 0
+      End
+    ) as QtdColetado,
+    Sum(
+      Case
+        When Lms.Situacao_Embarque = 8 Then 1
+        else 0
+      End
+    ) as QtdEntregue,
+    Sum(
+      Case
+        When Lms.Situacao_Embarque = 9 Then 1
+        else 0
+      End
+    ) as QtdAgProntMercadoria,
+    Sum(
+      Case
+        When Lms.Situacao_Embarque = 10 Then 1
+        else 0
+      End
+    ) as QtdAgBookingFin,
+    Sum(
+      Case
+        When Lms.Situacao_Embarque = 11 Then 1
+        else 0
+      End
+    ) as QtdAgColeta,
+    Sum(
+      Case
+        When Lms.Situacao_Embarque = 12 Then 1
+        else 0
+      End
+    ) as QtdAgEntrega,
+    Right(
+      Convert(char(7), Lhs.Data_Abertura_Processo, 111),
+      2
+    ) as Mes_Proposta,
+    Left(
+      Convert(char(7), Lhs.Data_Abertura_Processo, 111),
+      4
+    ) as Ano_Proposta
+  FROM
+    mov_Logistica_House Lhs
+    JOIN vis_Cliente Clt on Clt.IdPessoa = Lhs.IdCliente
+    Left Outer JOIN mov_Logistica_Master Lms on Lms.IdLogistica_Master = Lhs.IdLogistica_Master
+  WHERE
+    Lhs.Numero_Processo not like '%test%'
+    AND Lhs.Situacao_Agenciamento not in (7)
+    AND (IdCliente = '`+empresa+`' OR IdImportador = ${empresa} OR IdExportador = ${empresa})
+  GROUP BY
+    Right(
+      Convert(char(7), Lhs.Data_Abertura_Processo, 111),
+      2
+    ),
+    Left(
+      Convert(char(7), Lhs.Data_Abertura_Processo, 111),
+      4
+    ) ORDER BY Ano_Proposta, Mes_Proposta ASC`;
 
   CONEXA_HEAD.execSql(new Request(sql, function(err, rowCount, rows){
     if(err) {
@@ -419,7 +560,7 @@ router.get('/headrcargo_filtros', function (req, res) {
   var saida_where = false;
   var saida_and = false;
 
-  console.log(retornos)
+
 
   if(retornos.tipo_filtro){
 
@@ -665,9 +806,9 @@ router.get('/headrcargo_filtros', function (req, res) {
   var trans = [];
 
     if(saida_and != true){
-    sql = `SELECT * FROM vis_Tracking_Portal `+saida_sql+` IdCliente = '`+empresa+`'`;
+    sql = `SELECT * FROM vis_Tracking_Portal `+saida_sql+` IdCliente = '`+empresa+`' OR IdImportador = ${empresa} OR IdExportador = ${empresa}`;
     }else{
-      sql = `SELECT * FROM vis_Tracking_Portal `+saida_sql+` AND IdCliente = '`+empresa+`'`;
+    sql = `SELECT * FROM vis_Tracking_Portal `+saida_sql+` AND (IdCliente = '`+empresa+`' OR IdImportador = ${empresa} OR IdExportador = ${empresa})`;
     }
 
   
@@ -709,7 +850,7 @@ router.get('/headrcargo_criar_filtros', function (req, res) {
   
   let empresa = req.query.empresa;
 
-  sql = `SELECT * FROM vis_Tracking_Portal WHERE IdCliente = ${empresa} ORDER BY Data_Abertura_Convertido DESC`
+  sql = `SELECT * FROM vis_Tracking_Portal WHERE IdCliente = ${empresa} OR IdImportador = ${empresa} OR IdExportador = ${empresa} ORDER BY Data_Abertura_Convertido DESC`
   var trans = {};
   trans['Numero_Processo'] = [];
   trans['Mercadoria'] = [];
@@ -935,7 +1076,7 @@ router.get('/headcargo_api_all', function (req, res) {
     sql = `SELECT * FROM vis_Tracking_Portal WHERE Numero_Processo = 'EM0150-21'`
     // sql = `SELECT TOP 100 * FROM vis_Tracking_Portal ORDER BY IdLogistica_House DESC`
   }else if(tipo = 'cliente'){
-    sql = `SELECT * FROM vis_Tracking_Portal WHERE IdCliente = ${referencia} ORDER BY Data_Abertura_Convertido DESC`
+    sql = `SELECT * FROM vis_Tracking_Portal WHERE IdCliente = ${referencia} OR IdImportador = ${referencia} ORDER BY Data_Abertura_Convertido DESC`
   }else{
     sql = `SELECT * FROM vis_Tracking_Portal WHERE Numero_Processo = 'EM0150-21'`
   }

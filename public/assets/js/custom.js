@@ -506,5 +506,143 @@ window.location.href = "./login";
 
 
 
+	$("#input_search").keyup(function(){
+		var texto = $(this).val();
+
+		$(".lista_processos .teteu_e_o_brabo").css("display", "block");
+
+		$(".lista_processos .teteu_e_o_brabo").each(function(){
+			if($(this).text().toUpperCase().indexOf(texto.toUpperCase()) < 0)
+			   $(this).css("display", "none");
+		});
+	});
+
+ 
+
+$(document).on('submit', '#form_pesquisa', function(e){
+  e.preventDefault()
+  $('.btn_filtro').text('Filtrando')
+// var opcoes = $(this).serialize();
+
+let result = moment($('input[name=data_de]').val(), 'DD/MM/YYYY', true).isValid();
+let result2 = moment($('input[name=data_ate]').val(), 'DD/MM/YYYY', true).isValid();
+var data_de = '';
+var data_ate = '';
+
+
+if(result == false || result2 == false){
+	data_de = '';
+	data_ate = '';
+}else{
+	data_de = $('input[name=data_de]').val();
+	data_ate = $('input[name=data_ate]').val();
+	
+}
+
+
+
+
+var opcoes = {
+  tipo_filtro:$('input[name=tipo_filtro]:checked').val(),
+  data_de:data_de,
+  data_ate:data_ate,
+  referencia:$('select[name=referencia]').val(),
+  origem:$('select[name=origem]').val(),
+  armador:$('select[name=armador]').val(),
+  destino:$('select[name=destino]').val(),
+  importador:$('select[name=importador]').val(),
+  navio_viagem:$('select[name=navio_viagem]').val(),
+  exportador:$('select[name=exportador]').val(),
+  status:$('select[name=status]').val(),
+  mercadoria:$('select[name=mercadoria]').val(),
+  equipamento:$('select[name=equipamento]').val(),
+  hbl:$('select[name=hbl]').val(),
+  booking:$('select[name=booking]').val(),
+}
+
+
+  $.ajax({
+          url : "/headrcargo_filtros",
+          type : 'get',
+          data : {
+            opcoes : opcoes,
+            empresa : db_local.empresa
+          },
+          dataType: "json",
+          beforeSend : function(){
+          }
+      }).done(function(msg){
+        
+        $('.lista_processos').html('')
+        // $('.btn_filtro').html('')
+          $('.btn_filtro').html('<i class="fe fe-search"></i>')
+        msg.forEach(element => {
+          
+
+          if(element.Situacao_Embarque_Codigo == 0){
+          situacao = 'Pré-processo';
+        }else if(element.Situacao_Embarque_Codigo == 1){
+          situacao = 'Ag. embarque';
+        }else if(element.Situacao_Embarque_Codigo == 2){
+          situacao = 'Embarcado';
+        }else if(element.Situacao_Embarque_Codigo == 3){
+          situacao = 'Desembarque';
+        }else if(element.Situacao_Embarque_Codigo == 4){
+          situacao = 'Cancelado';
+        }else if(element.Situacao_Embarque_Codigo == 5){
+          situacao = 'Pendente';
+        }else if(element.Situacao_Embarque_Codigo == 6){
+          situacao = 'Autorizado';
+        }else if(element.Situacao_Embarque_Codigo == 7){
+          situacao = 'Coletado';
+        }else if(element.Situacao_Embarque_Codigo == 8){
+          situacao = 'Entregue';
+        }else if(element.Situacao_Embarque_Codigo == 9){
+          situacao = 'Ag. prontidão';
+        }else if(element.Situacao_Embarque_Codigo == 10){
+          situacao = 'Ag. booking finalizado';
+        }else if(element.Situacao_Embarque_Codigo == 11){
+          situacao = 'Ag. coleta';
+        }else if(element.Situacao_Embarque_Codigo == 12){
+          situacao = 'Ag. entrega';
+        }else{
+          situacao = element.Situacao_Embarque_Codigo;
+        }
+
+
+
+          var campo = '<a href="#" id="'+element.Numero_Processo+'" class="teteu_e_o_brabo list-group-item list-group-item-action flex-column align-items-start border-0">';
+            campo += '<div class="d-flex w-100 justify-content-between">';
+            campo += '<h6 class="mb-1 font-weight-bold">'+element.Numero_Processo+'</h6>';
+            campo += '<h6 class="mb-0 font-weight-semibold tx-15" data-placement="top" data-toggle="tooltip" title="Data de Abertura">'+element.Data_Abertura+'</h6>';
+            campo += '</div>';
+            campo += '<div class="d-flex w-100 justify-content-between">';
+            campo += '<span class="text-muted">';
+            campo += '<i class="ti-alarm-clock  text-danger "></i> '+situacao+'</span>';
+            campo += '<span class="text-muted tx-11">'+element.Rota+'</span>';
+            campo += '</div>';
+            campo += '</a>';
+
+            $('.lista_processos').append(campo)
+        });
+
+        $('[data-toggle="tooltip"]').tooltip()
+
+
+
+
+
+
+
+      })
+
+})
+
+
+
+  
+
+
+
 
 });
