@@ -876,6 +876,57 @@ router.get('/headrcargo_criar_filtros', function (req, res) {
 })
 
 
+router.get('/follow_list', function (req, res) {
+  let processo = req.query.processo;
+
+  sql = `SELECT * FROM vis_Tracking_Portal_Follow WHERE IdLogistica_House = ${processo} ORDER BY Data DESC`
+
+  var trans = [];
+
+  CONEXA_HEAD.execSql(new Request(sql, function(err, rowCount, rows){
+    if(err) {
+        throw err;
+    }
+}).on('doneInProc',function(rowCount_transbodo, more2, rows_transbodo){
+ 
+  
+  var contun2 = 0;
+  rows_transbodo.forEach(function (column_trans) {
+    trans[contun2] = {};
+    column_trans.forEach(function (column_trans_entro) {
+      // console.log(column_trans_entro.metadata.colName)
+
+      if(column_trans_entro.value == null){
+        column_trans_entro.value = '';
+      }
+
+      trans[contun2][column_trans_entro.metadata.colName] = column_trans_entro.value;
+
+      // console.log(column_trans_entro.metadata.colName, column_trans_entro.value)
+    });
+
+    contun2 = contun2 + 1;
+  })
+
+  //  console.log(trans)
+  // console.log(driver)
+  
+
+  }).on('requestCompleted',function(rowCount, more, rows){
+   
+    res.json(trans);
+    
+  }));
+
+  
+
+  
+})
+
+
+
+
+
 router.get('/headcargo_api_all', function (req, res) {
   let referencia = req.query.ref;
   let tipo = req.query.tipo;

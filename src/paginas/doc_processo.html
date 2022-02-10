@@ -178,16 +178,9 @@
           <td class="tx-12" style="width: 167px;">Data</td>
             <th class="tx-12">Descrição</th>
       </thead>
-      <tbody>
-         <tr>
-          <td class="tx-12" style="max-width: 167px;" >10/02/2022 15:25:25</td>
-            <td class="tx-12">Logo and business cards design</td>
-         </tr>
-         <tr>
-          <td class="tx-12" style="max-width: 167px;">10/02/2022 15:25:25</td>
-            <td class="tx-12">Design/Development for all popular modern browsers</td>
-            
-         </tr>
+      <tbody class="corpo_follow">
+       
+        
        
       
       </tbody>
@@ -317,7 +310,7 @@ $.ajax({
     });
 
    
-      
+
      }else{
       $('.tabela_equipamentos').css('display', 'none');
       
@@ -327,7 +320,42 @@ $.ajax({
      
      
      
-     
+     $.ajax({
+    url: '/follow_list',
+    method: 'GET',
+    data:{processo : msg.IdLogistica_House},
+    dataType: "json",
+    type: 'POST', // For jQuery < 1.9
+    success: function(return_){
+   
+      $('.corpo_follow').html('')
+      total = return_.length-1;
+
+      console.log('total:'+total)
+
+contagem = 0;
+return_.forEach(element => {
+console.log(contagem)
+if(contagem == 0){
+linha =  '<tr>';
+linha += '<td class="tx-12" style="max-width: 167px;color: black;" ><b>'+element.DataConvertido+'</b></td>';
+linha += '<td class="tx-12"><b>'+element.Descricao+'</b></td>';
+linha += '</tr>';
+}else{
+linha =  '<tr>';
+linha += '<td class="tx-12" style="max-width: 167px;" >'+element.DataConvertido+'</td>';
+linha += '<td class="tx-12">'+element.Descricao+'</td>';
+linha += '</tr>';
+}
+
+
+$('.corpo_follow').append(linha)
+contagem++;
+      });
+
+    }
+
+  })
 
 
 
