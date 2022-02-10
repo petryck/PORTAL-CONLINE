@@ -18,14 +18,19 @@ $.ajax({
 	data: {empresa:db_local['empresa']},
 	contentType: 'application/json',
 	success: function (data) {
-		console.log(data)
+	
 		
 		localStorage.setItem("info_empresa_plataforma",JSON.stringify(data));
 		
 		$('#nome_empresa_user').text(data['Nome_Fantasia'])
 		
-		
-		$('#avatar_empresa').attr('src', data['img'])
+		var firstName = data['Nome_Fantasia']
+		var nome = firstName.split(" ")[0];
+		var sobrenome = firstName.split(" ")[1];
+		// var lastName = $('#lastName').text();
+		var intials = nome.charAt(0);
+		var profileImage = $('#avatar_empresa').text(intials);
+		// $('#avatar_empresa').attr('src', data['img'])
 	}
 })
 
@@ -49,11 +54,11 @@ acessos.forEach(element => {
 
     if(element == 3 && acessos.indexOf(3) > -1){
         // $('#menu_ti_btn').css('display', 'block');
-        console.log('acesso TI')
+      
       }else if(element == 2 && acessos.indexOf(2) > -1){
-        console.log('acesso ADM')
+    
       }else if(element == 1 && acessos.indexOf(1) > -1){
-        console.log('Geral')
+      
       }
 
 });
@@ -78,8 +83,47 @@ $(document).on('click', '.btn_ver', function(e) {
 			$(".formulario_usuarios input[name=ultimo_nome]").val(data[0]['ultimo_nome']);
 			$(".formulario_usuarios input[name=telefone]").val(data[0]['telefone']);
 
-			
+			if(data[0]['acesso_comercial'] == 1){
+				$("input[name=comercial]").prop( "checked", true );
+			 }else{
+				$("input[name=comercial]").prop( "checked", false ); 
+			 }
 
+			 if(data[0]['acesso_operacional'] == 1){
+				$("input[name=operacional]").prop( "checked", true );
+			 }else{
+				$("input[name=operacional]").prop( "checked", false ); 
+			 }
+
+			 if(data[0]['acesso_documental'] == 1){
+				$("input[name=documental]").prop( "checked", true );
+			 }else{
+				$("input[name=documental]").prop( "checked", false ); 
+			 }
+
+			 if(data[0]['acesso_financeiro'] == 1){
+				$("input[name=financeiro]").prop( "checked", true );
+			 }else{
+				$("input[name=financeiro]").prop( "checked", false ); 
+			 }
+
+			 if(data[0]['acesso_adminstrativo'] == 1){
+				$("input[name=administrador]").prop( "checked", true );
+			 }else{
+				$("input[name=administrador]").prop( "checked", false ); 
+			 }
+
+
+			 if(data[0]['status'] == 1){
+				$("input[name=ativo]").prop( "checked", true );
+			 }else{
+				$("input[name=ativo]").prop( "checked", false ); 
+			 }
+
+
+			 
+			
+			 $("#btn_salvar_usuario").data('id', data[0]['idusuarios']);
 			$("#btn_desativar_conta").attr('id', data[0]['idusuarios']);
 			
 			$('#modaldemo6').modal('show');

@@ -151,16 +151,16 @@
           <tr>
             <th class="wd-20p">Quantidade</th>
             <th class="wd-40p">Equipamento</th>
-            <th class="tx-center">Freetime Origem</th>
-            <th class="tx-right">Freetime Destino</th>
+            <th class="tx-right campo_expo">Freetime Origem</th>
+            <th class="tx-right ">Freetime Destino</th>
           </tr>
         </thead>
         <tbody class="corpo_equipamento">
           <tr>
             <td>1x</td>
-            <td class="tx-12">40 HIGH CUBE</td>
-            <td class="tx-center">5 dias</td>
-            <td class="tx-right"></td>
+            <td class="tx-12">-</td>
+            <td class="tx-right campo_expo">-</td>
+            <td class="tx-right ">-</td>
           </tr>
         
          
@@ -168,8 +168,30 @@
          
         </tbody>
       </table>
+     
     </div>
-  
+    <p class="h3" style="font-size: 15px;">Histórico de Follow-up</p>
+
+    <table class="table table-invoice table-bordered">
+      <thead>
+         <tr>
+          <td class="tx-12" style="width: 167px;">Data</td>
+            <th class="tx-12">Descrição</th>
+      </thead>
+      <tbody>
+         <tr>
+          <td class="tx-12" style="max-width: 167px;" >10/02/2022 15:25:25</td>
+            <td class="tx-12">Logo and business cards design</td>
+         </tr>
+         <tr>
+          <td class="tx-12" style="max-width: 167px;">10/02/2022 15:25:25</td>
+            <td class="tx-12">Design/Development for all popular modern browsers</td>
+            
+         </tr>
+       
+      
+      </tbody>
+   </table>
 
   </div>
   <div class="card-footer text-right">
@@ -178,9 +200,9 @@
     <button type="button" class="btn ripple btn-secondary mb-1">
       <i class="fe fe-send mr-1"></i> Send Invoice </button> -->
 
-    <button type="button" class="btn ripple btn-info mb-1" onclick="javascript:window.print();">
+    <!-- <button type="button" class="btn ripple btn-info mb-1" onclick="javascript:window.print();">
       <i class="fe fe-printer mr-1" ></i> Imprimir 
-    </button>
+    </button> -->
   </div>
 
 
@@ -206,15 +228,19 @@ $.ajax({
      $('#referencia').html(msg.Numero_Processo)
 
       if(msg.Modalidade == 'IM'){
+        $('.campo_expo').remove()
         $('#agente').html(msg.Agente_Origem)
       $('#tipo_modal').html('Importação Marítima')
   
      }else if(msg.Modalidade == 'EM'){
+
+    
       $('#agente').html(msg.Agente_Destino)
       $('#tipo_modal').html('Exportação Marítima')
      
 
      }else if(msg.Modalidade == 'IA'){
+      $('.campo_expo').remove()
       $('#agente').html(msg.Agente_Origem)
       $('#tipo_modal').html('Importação Aérea')
      }else if(msg.Modalidade == 'EA'){
@@ -224,9 +250,11 @@ $.ajax({
       $('#agente').html(msg.Agente_Destino)
       $('#tipo_modal').html('Exportação Terrestre')
      }else if(msg.Modalidade == 'TI'){
+      $('.campo_expo').remove()
       $('#agente').html(msg.Agente_Origem)
       $('#tipo_modal').html('Importação Terrestre')
      }else if(msg.Modalidade == 'NT'){
+      $('.campo_expo').remove()
       $('#tipo_modal').html('Nacional Transporte')
      }
 
@@ -271,8 +299,18 @@ $.ajax({
 
     saida += '<td>'+element.Quantidade+'x </td>'
     saida += '<td class="tx-12">'+element.Equipamento_Maritimo+'</td>'
-    saida += '<td class="tx-center">'+element.Free_Time_House_Destino+'</td>'
-    saida += '<td class="tx-right">'+element.Free_Time_House_Origem+'</td>'
+    
+    if(msg.Modalidade == 'IM'){
+      saida += '<td class="tx-right">'+element.Free_Time_House_Destino+'</td>'
+    }else if(msg.Modalidade == 'IA'){
+      saida += '<td class="tx-right">'+element.Free_Time_House_Destino+'</td>'
+    }else if(msg.Modalidade == 'TI'){
+      saida += '<td class="tx-right">'+element.Free_Time_House_Destino+'</td>'
+}else{
+  saida += '<td class="tx-right">'+element.Free_Time_House_Destino+'</td>'
+  saida += '<td class="tx-right">'+element.Free_Time_House_Origem+'</td>'
+}
+    
     saida += '</tr>'
 
     $('.corpo_equipamento').append(saida)

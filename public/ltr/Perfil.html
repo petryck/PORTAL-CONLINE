@@ -2,6 +2,19 @@
    .modal-backdrop{
       display: none;
    }
+
+   #logo_empresa1 {
+    width: 105px;
+    height: 105px;
+    border-radius: 50%;
+    background: #b63337;
+    font-size: 35px;
+    color: #fff;
+    text-align: center;
+    line-height: 99px;
+    margin: 9px 0;
+    font-weight: 900;
+}
    
 </style>
 
@@ -28,7 +41,10 @@
              <div class="card-body">
                 <div class="panel profile-cover">
                    <div class="profile-cover__img">
-                      <img src="#" id="logo_empresa" alt="img" style="min-width: 120px;min-height: 120px;"> 
+                      <div id="logo_empresa1"></div>
+                      
+                      <!-- <img src="#" id="logo_empresa" alt="img" style="min-width: 120px;min-height: 120px;">  -->
+                  
                       <h3 class="h3" id="nome_empresa">-</h3>
                    </div>
 
@@ -49,8 +65,8 @@
                    <nav class="nav main-nav-line p-3 tabs-menu profile-nav-line bg-gray-100"> 
                     <a class="nav-link active" data-toggle="tab" href="#perfil">Meu Perfil</a> 
                        <a class="nav-link" data-toggle="tab" href="#empresa">Empresa</a> 
-                       <a class="nav-link" data-toggle="tab" href="#acessos">Acessos</a> 
-                       <a class="nav-link" data-toggle="tab" href="#atividades">Atividades</a> 
+                       <a class="nav-link campo_adm" data-toggle="tab" href="#acessos">Acessos</a> 
+                       <!-- <a class="nav-link" data-toggle="tab" href="#atividades">Atividades</a>  -->
                        <!-- <a class="nav-link" data-toggle="tab" href="#settings">Configurações</a>  -->
                      </nav>
                 </div>
@@ -67,7 +83,7 @@
                 <div class="main-content-body tab-pane p-4 border-top-0 active" id="perfil">
                    <div class="card-body border">
                       <div class="mb-4 main-content-label">Informações pessoais</div>
-                      <form class="form-horizontal">
+                      <form class="form-horizontal" id="form_info_pessoal" action="#" method="get">
                          <div class="mb-4 main-content-label">Nome</div>
                          <div class="form-group ">
                             <div class="row row-sm">
@@ -112,7 +128,7 @@
                                     </div> -->
                                <div class="col-md-9">
                                   <div class="custom-controls-stacked"> 
-                                      <label class="ckbox mg-b-10-f"> <input checked="" type="checkbox"><span> Aceito receber e-mails de notificação.</span></label> 
+                                      <label class="ckbox mg-b-10-f"> <input checked="" name="noticias_email" type="checkbox"><span> Aceito receber e-mails de notificação.</span></label> 
                                       <!-- <label class="ckbox"><input checked="" type="checkbox"><span> Accept to receive email sent to multiple recipients</span></label>  -->
                                     </div>
                                </div>
@@ -126,11 +142,11 @@
                              <div class="row row-sm"> 
                                
                                  <div class="col-md-11"> 
-                                     <a class="mg-r-20" href="#">Desativar conta</a> 
-                                     <a class="" href="#">Alterar senha</a> 
+                                     <a class="mg-r-20" id="btn_desativar_conta" href="#">Desativar conta</a> 
+                                     <a class="modal-effect" data-effect="effect-sign" data-toggle="modal" href="#modal_trocar_senha">Alterar senha</a> 
                                  </div> 
                                  <div class="col-md-1" style="float: right;">
-                                    <button class="btn btn-success">Salvar</button>
+                                    <button type="submit" id="btn_salvar_info_pessoal" class="btn btn-success">Salvar</button>
                                  </div>
                                 </div> 
                             </div>
@@ -175,9 +191,15 @@
                    </div>
                 </div>
 
-                <div class="main-content-body p-4 border tab-pane border-top-0" id="acessos">
+                <div class="main-content-body p-4 border tab-pane border-top-0 campo_adm" id="acessos">
+                  
                     <div class="card-body border pd-b-10" >
                         <!-- row --> 
+                        
+                        <div class="row" style="float: right;">
+                           <button class="btn btn-info" id="btn_cadastrar_usuario" style="margin-top: -13px;">Adicionar</button>
+                        </div>
+                        <br>
                         <div class="row row-sm corpo_acessos" >
                             
                              
@@ -443,6 +465,138 @@
        </div>
     </div>
 
+
+    <div class="modal" id="modal_trocar_senha" style="display: none;" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+         <div class="modal-content modal-content-demo">
+            <div class="modal-body">
+               <h6>Alterar senha</h6>
+               <div class="form-group ">
+                  <div class="row row-sm">
+                     <div class="col-md-12"> 
+                        <label class="form-label">Nova senha</i></label>
+                        <input type="password" id="new_senha" class="form-control" placeholder="Nova senha" value=""> 
+                     </div>
+                     <br>
+                     <br>
+                     <div class="col-md-12" style="margin-top: 20px;"> 
+                        <label class="form-label">Confirmação de senha</i></label>
+                        <input type="password" id="confirm_senha" class="form-control" placeholder="Confirmação de senha" value=""> 
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="modal-footer"> <button class="btn btn-success ripple" id="btn_confirm_senha" type="button">Confirmar</button> <button class="btn ripple btn-primary" data-dismiss="modal" type="button">Cancelar</button> </div>
+         </div>
+      </div>
+   </div>
+
+
+
+
+   <div class="modal" id="modal_cadastra_usuario" style="padding-right: 3px;z-index: 2050 !important;" aria-modal="true" role="dialog">
+      <div class="modal-dialog modal-lg" role="document">
+         <div class="modal-content modal-content-demo">
+            <div class="modal-header">
+               <h6 class="modal-title">Cadastrar usuário</h6>
+               <!-- <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">×</span></button>  -->
+            </div>
+            <div class="modal-body">
+               <div class="row row-sm">
+                  <div class="col-lg-12 col-md-12">
+                     <div class="card custom-card">
+                        <div class="card-body">
+                           <!-- <div>
+                              <h6 class="main-content-label mb-1">Default Form Input Fields with labels</h6>
+                              <p class="text-muted card-sub-title">A form control with labels state.</p>
+                           </div> -->
+                           <div class="row row-sm formulario_usuarios">
+                              <div class="col-md-6">
+                                 <div class="form-group">
+                                    <p class="mg-b-10">Primeiro Nome</p>
+                                    <input type="text" class="form-control" name="cad_primeiro_nome" placeholder="Primeiro Nome"> 
+                                 </div>
+                                 <div class="form-group">
+                                    <p class="mg-b-10">Email</p>
+                                    <input type="text" class="form-control" name="cad_email" placeholder="Email"> 
+                                 </div>
+                                 <div class="form-group">
+                                    <p class="mg-b-10">Senha</p>
+                                    <input type="text" class="form-control" name="cad_senha" placeholder="Função"> 
+                                 </div>
+                                 
+                              </div>
+                              <div class="col-md-6">
+                                 <div class="form-group">
+                                    <p class="mg-b-10">Função</p>
+                                    <input type="text" class="form-control" name="cad_funcao" placeholder="Função"> 
+                                 </div>
+                                 <div class="form-group">
+                                    <p class="mg-b-10">Último Nome</p>
+                                    <input type="text" class="form-control" name="cad_ultimo_nome" placeholder="Último Nome"> 
+                                 </div>
+                                 <div class="form-group">
+                                    <p class="mg-b-10">Telefone</p>
+                                    <input type="text" class="form-control" name="cad_telefone" placeholder="Telefone"> 
+                                 </div>
+
+                                 
+                                
+                              </div>
+                              <div class="col-md-6">
+                               
+                              </div>
+                              <div class="col-md-3">
+                                
+                              </div>
+                              <p class="text-muted card-sub-title" style="margin-left: 10px; padding-bottom: 10px;">Níveis de acesso</p>
+                              <div class="col-md-12 ">
+
+                                 <div class="row row-sm">
+                                    <div class="col-lg-3 check-padding"> 
+                                       <label class="ckbox">
+                                          <input name="cad_comercial" type="checkbox">
+                                          <span>Comercial</span>
+                                       </label> 
+                                    </div>
+                                    <div class="col-lg-3 check-padding"> 
+                                       <label class="ckbox">
+                                          <input name="cad_operacional" type="checkbox">
+                                          <span>Operacional</span>
+                                       </label> 
+                                    </div>
+                                    <div class="col-lg-3 check-padding"> 
+                                       <label class="ckbox">
+                                          <input name="cad_documental" type="checkbox">
+                                          <span>Documental</span>
+                                       </label> 
+                                    </div>
+                                    <div class="col-lg-3 check-padding" > 
+                                       <label class="ckbox">
+                                          <input name="cad_financeiro" type="checkbox">
+                                          <span>Financeiro</span>
+                                       </label> 
+                                    </div>
+
+                                    <div class="col-lg-3 check-padding"> 
+                                       <label class="ckbox">
+                                          <input name="cad_administrador" type="checkbox">
+                                          <span>Administrador</span>
+                                       </label> 
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="modal-footer"> <button class="btn ripple btn-success" id="btn_cad_usuario" type="button">Salvar</button> <button class="btn ripple btn-primary" data-dismiss="modal" type="button">Cancelar</button> </div>
+         </div>
+      </div>
+   </div>
+
     <style>
        .check-padding{
          padding-bottom: 10px;
@@ -460,7 +614,7 @@
                <div class="row row-sm">
                   <div class="col-lg-12 col-md-12">
                      <div class="card custom-card">
-                        <div class="card-body">
+                        <div class="card-body acessos">
                            <!-- <div>
                               <h6 class="main-content-label mb-1">Default Form Input Fields with labels</h6>
                               <p class="text-muted card-sub-title">A form control with labels state.</p>
@@ -501,7 +655,10 @@
                               </div>
                               <div class="col-md-3">
                                  <div class="form-group">
-                                    <a class="mg-r-20" id="btn_desativar_conta" href="#">Desativar conta</a> 
+                                    <label class="ckbox">
+                                       <input name="ativo" type="checkbox">
+                                       <span>Usuário ativo</span>
+                                    </label> 
                                  </div>
                               </div>
                               <p class="text-muted card-sub-title" style="margin-left: 10px; padding-bottom: 10px;">Níveis de acesso</p>
@@ -510,32 +667,32 @@
                                  <div class="row row-sm">
                                     <div class="col-lg-3 check-padding"> 
                                        <label class="ckbox">
-                                          <input type="checkbox">
+                                          <input name="comercial" type="checkbox">
                                           <span>Comercial</span>
                                        </label> 
                                     </div>
                                     <div class="col-lg-3 check-padding"> 
                                        <label class="ckbox">
-                                          <input type="checkbox">
+                                          <input name="operacional" type="checkbox">
                                           <span>Operacional</span>
                                        </label> 
                                     </div>
                                     <div class="col-lg-3 check-padding"> 
                                        <label class="ckbox">
-                                          <input type="checkbox">
+                                          <input name="documental" type="checkbox">
                                           <span>Documental</span>
                                        </label> 
                                     </div>
                                     <div class="col-lg-3 check-padding" > 
                                        <label class="ckbox">
-                                          <input type="checkbox">
+                                          <input name="financeiro" type="checkbox">
                                           <span>Financeiro</span>
                                        </label> 
                                     </div>
 
                                     <div class="col-lg-3 check-padding"> 
                                        <label class="ckbox">
-                                          <input type="checkbox">
+                                          <input name="administrador" type="checkbox">
                                           <span>Administrador</span>
                                        </label> 
                                     </div>
@@ -547,7 +704,7 @@
                   </div>
                </div>
             </div>
-            <div class="modal-footer"> <button class="btn ripple btn-primary" type="button">Salvar</button> <button class="btn ripple btn-secondary" data-dismiss="modal" type="button">Sair</button> </div>
+            <div class="modal-footer"> <button class="btn ripple btn-success" id="btn_salvar_usuario" type="button">Salvar</button> <button class="btn ripple btn-primary" data-dismiss="modal" type="button">Cancelar</button> </div>
          </div>
       </div>
    </div>
@@ -561,8 +718,23 @@
  </div>
 
  <script>
+
+
+
+
+
+var firstName = JSON.parse(localStorage.getItem("info_empresa_plataforma"))['Nome_Fantasia']
+var nome = firstName.split(" ")[0];
+var sobrenome = firstName.split(" ")[1];
+// var lastName = $('#lastName').text();
+var intials = nome.charAt(0);
+var profileImage = $('#logo_empresa1').text(intials);
+
+
+
+
 $('#nome_empresa').text(JSON.parse(localStorage.getItem("info_users_plataforma"))[0]['nome']+' '+JSON.parse(localStorage.getItem("info_users_plataforma"))[0]['ultimo_nome'])
-$('#logo_empresa').attr('src', JSON.parse(localStorage.getItem("info_empresa_plataforma"))['img'])
+// $('#logo_empresa').attr('src', JSON.parse(localStorage.getItem("info_empresa_plataforma"))['img'])
 
 
 $("input[name=nome_fantasia]").val(JSON.parse(localStorage.getItem("info_empresa_plataforma"))['Nome_Fantasia']);
@@ -583,21 +755,332 @@ $("input[name=ultimo_nome]").val(data[0]['ultimo_nome']);
 $("input[name=funcao]").val(data[0]['funcao']);
 $("input[name=telefone]").val(data[0]['telefone']);
 
+
+
+if(data[0]['noticias_email_sirius'] == 1){
+   $("input[name=noticias_email]").prop( "checked", true );
+}else{
+   $("input[name=noticias_email]").prop( "checked", false ); 
+}
+
+
    }
 })
 
-console.log(JSON.parse(localStorage.getItem("info_empresa_plataforma")))
+if(JSON.parse(localStorage.getItem("info_users_plataforma"))[0]['acesso_adminstrativo'] == 0){
+   
+   $('.campo_adm').remove()
+   }
+   
+
+// console.log(JSON.parse(localStorage.getItem("info_empresa_plataforma")))
+
+
+// $(document).on('click', '#alterar_senha_conta', function(e){
+// e.preventDefault();
+
+
+
+// })
+
+
+
+
+
+$(document).on('click', '#btn_cadastrar_usuario', function(e){
+e.preventDefault();
+
+$('#modal_cadastra_usuario').modal('show');
+
+})
+
+
+$(document).on('click', '.remover_usuario', function(e){
+e.preventDefault();
+id_usuario = $(this).attr('id');
+
+
+swal({
+		  title: "Remover usuário?",
+		  text: "Você não poderá desfazer essa ação!",
+		  type: "warning",
+		  showCancelButton: true,
+		  confirmButtonClass: "btn btn-danger",
+		  confirmButtonText: "Sim, remover agora!",
+		  closeOnConfirm: false
+		},
+		function(){
+         $.ajax({
+	type: 'GET',
+	url: '/remover_usuario',
+	data: {usuario:id_usuario},
+	contentType: 'application/json',
+	success: function (data) {
+      acessos()
+      swal("Feito!", "Usuário removido com sucesso!", "success");
+
+   }
+})
+      }
+      )
+
+
+})
+
+
+$(document).on('click', '#btn_confirm_senha', function(e){
+e.preventDefault();
+
+new_senha = $('#new_senha').val();
+confirm_senha = $('#confirm_senha').val();
+
+
+if(new_senha == confirm_senha){
+
+   $.ajax({
+	type: 'GET',
+	url: '/alter_password',
+	data: {usuario:JSON.parse(localStorage.getItem("info_users_plataforma"))[0]['idusuarios'],
+         senha:new_senha},
+	contentType: 'application/json',
+	success: function (data) {
+  
+      swal({
+		  title: "Alteração senha",
+		  text: "Sua senha foi alterada com sucesso!",
+		  type: "success",
+      },function(){})
+
+
+      $('#modal_trocar_senha').modal('hide')
+
+
+
+   }
+})
+   
+}else if(new_senha == '' || confirm_senha == ''){
+
+   alert('campo em branco')
+
+}else{
+   alert('senhas diferentes')
+}
+
+
+})
+
+
+// $(document).on('click', '#btn_salvar_info_pessoal', function(e){
+// e.preventDefault();
+
+// $('#form_info_pessoal').submit();
+
+// })
+
+
+
+
+
+$(document).on('click', '#btn_cad_usuario', function(e){
+   e.preventDefault();
+  
+   var opcoes = {
+   comercial:$('input[name=cad_comercial]:checked').length,
+   operacional:$('input[name=cad_operacional]:checked').length,
+   documental:$('input[name=cad_documental]:checked').length,
+   financeiro:$('input[name=cad_financeiro]:checked').length,
+   administrador:$('input[name=cad_administrador]:checked').length,
+   primeiro_nome:$('input[name=cad_primeiro_nome]').val(),
+   ultimo_nome:$('input[name=cad_ultimo_nome]').val(),
+   funcao:$('input[name=cad_funcao]').val(),
+   email:$('input[name=cad_email]').val(),
+   telefone:$('input[name=telefone]').val(),
+   senha:$('input[name=cad_senha]').val()
+}
+
+
+
 
 
 $.ajax({
+	type: 'GET',
+	url: '/cadastrar_usuario',
+	data : {
+            opcoes : opcoes,
+            usuario : JSON.parse(localStorage.getItem("info_users_plataforma"))[0]['idusuarios'],
+            empresa : JSON.parse(localStorage.getItem("info_users_plataforma"))[0]['empresa'],
+          },
+	contentType: 'application/json',
+	success: function (data) {
+     $('#modal_cadastra_usuario').modal('hide')
+
+  
+         swal("Cadastrado!", "Usuário cadastrado com sucesso!", "success");
+         acessos()
+      //    swal({
+		//   title: "Alteração senha",
+		//   text: "Sua senha foi alterada com sucesso!",
+		//   type: "success",
+      // },function(){})
+
+
+      }
+   });
+
+})
+
+
+
+
+
+
+$(document).on('click', '#btn_salvar_usuario', function(e){
+   e.preventDefault();
+
+   id_usuario = $(this).data('id');
+
+
+  
+   var opcoes = {
+   comercial:$('.acessos input[name=comercial]:checked').length,
+   operacional:$('.acessos input[name=operacional]:checked').length,
+   documental:$('.acessos input[name=documental]:checked').length,
+   financeiro:$('.acessos input[name=financeiro]:checked').length,
+   status:$('.acessos input[name=ativo]:checked').length,
+   administrador:$('.acessos input[name=administrador]:checked').length,
+   primeiro_nome:$('.acessos input[name=primeiro_nome]').val(),
+   ultimo_nome:$('.acessos input[name=ultimo_nome]').val(),
+   funcao:$('.acessos input[name=funcao]').val(),
+   email:$('.acessos input[name=email]').val(),
+   telefone:$('.acessos input[name=telefone]').val()
+}
+
+
+
+
+$.ajax({
+	type: 'GET',
+	url: '/alterar_info_usuario',
+	data : {
+            opcoes : opcoes,
+            usuario : id_usuario
+          },
+	contentType: 'application/json',
+	success: function (data) {
+     $('#modaldemo6').modal('hide')
+
+  
+         swal("Salvo!", "Alterações foram salvas", "success");
+         acessos()
+      //    swal({
+		//   title: "Alteração senha",
+		//   text: "Sua senha foi alterada com sucesso!",
+		//   type: "success",
+      // },function(){})
+
+
+      }
+   });
+
+})
+
+
+
+
+
+$(document).on('submit', '#form_info_pessoal', function(e){
+   e.preventDefault();
+  
+   var opcoes = {
+  noticias_email:$('input[name=noticias_email]:checked').length,
+  primeiro_nome:$('input[name=primeiro_nome]').val(),
+  ultimo_nome:$('input[name=ultimo_nome]').val(),
+  funcao:$('input[name=funcao]').val(),
+  email:$('input[name=email]').val(),
+  telefone:$('input[name=telefone]').val()
+}
+
+
+
+
+$.ajax({
+	type: 'GET',
+	url: '/alterar_info_pessoal',
+	data : {
+            opcoes : opcoes,
+            usuario : JSON.parse(localStorage.getItem("info_users_plataforma"))[0]['idusuarios']
+          },
+	contentType: 'application/json',
+	success: function (data) {
+
+  
+         swal("Salvo!", "Alterações foram salvas", "success");
+         acessos()
+      //    swal({
+		//   title: "Alteração senha",
+		//   text: "Sua senha foi alterada com sucesso!",
+		//   type: "success",
+      // },function(){})
+
+
+      }
+   });
+
+})
+
+$(document).on('click', '#btn_desativar_conta', function(e){
+e.preventDefault();
+
+		swal({
+		  title: "Desativar conta?",
+		  text: "Apenas um administrador poderá restaurar a conta!",
+		  type: "warning",
+		  showCancelButton: true,
+		  confirmButtonClass: "btn btn-danger",
+		  confirmButtonText: "Sim, desativar agora!",
+		  closeOnConfirm: false
+		},
+		function(){
+
+         $.ajax({
+	type: 'GET',
+	url: '/disable_accont',
+	data: {usuario:JSON.parse(localStorage.getItem("info_users_plataforma"))[0]['idusuarios']},
+	contentType: 'application/json',
+	success: function (data) {
+
+            swal("Desativado!", "Sua conta foi desativada você será redirecionado para a página de acesso", "success");
+
+            setTimeout(() => {
+               localStorage.removeItem("info_users_plataforma");
+               window.location.href = "./login";
+            }, 3000);
+
+            }
+         });
+		  
+       
+		});
+
+
+
+
+})
+
+
+acessos()
+
+
+function acessos(){
+   $.ajax({
 	type: 'GET',
 	url: '/acessos_empresa',
 	data: {empresa:JSON.parse(localStorage.getItem("info_users_plataforma"))[0]['empresa']},
 	contentType: 'application/json',
 	success: function (data) {
-        console.log(data)
-		
-	
+      
+      $(".corpo_acessos").html('');
         data.forEach(element => {
 
             acesso = '<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">'
@@ -606,7 +1089,7 @@ $.ajax({
             acesso += '<div class="user-lock text-center">'
             acesso += '<div class="dropdown text-right">'
             acesso += '<a href="#" class="option-dots" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fe fe-more-vertical"></i> </a> '
-            acesso += '<div class="dropdown-menu dropdown-menu-right shadow" style=""> <a id="'+element.idusuarios+'" class="dropdown-item btn_ver" href="#"><i class="fe fe-eye mr-2"></i> Ver</a> <a class="dropdown-item" href="#"><i class="fe fe-trash-2 mr-2"></i> Remover</a> </div>'
+            acesso += '<div class="dropdown-menu dropdown-menu-right shadow" style=""> <a id="'+element.idusuarios+'" class="dropdown-item btn_ver" href="#"><i class="fe fe-eye mr-2"></i> Ver</a> <a id="'+element.idusuarios+'" class="dropdown-item remover_usuario" href="#"><i class="fe fe-trash-2 mr-2"></i> Remover</a> </div>'
             acesso += '</div>'
             acesso += '<div class="rounded-circle" style=" background: #25233c;font-size: 35px;color: #fff;text-align: center;line-height: 73px;; width: 70px; height: 70px;margin: 0 auto;"> '+element.nome.charAt(0)+' </div>'
             acesso += '</div>'
@@ -617,10 +1100,11 @@ $.ajax({
             acesso += '</div>'
             acesso += '</div>'
 
-            $(".corpo_acessos").html(acesso);
+            $(".corpo_acessos").append(acesso);
         });
 	}
 })
+}
 
 
 

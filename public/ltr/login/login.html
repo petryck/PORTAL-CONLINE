@@ -262,10 +262,24 @@ $('#btn_login').prop("disabled",true);
         if(data != 'error'){
    
           $('#btn_login').text('Entrando...');
-          localStorage.setItem("info_users_plataforma",JSON.stringify(data));
+
+          if(data[0]['status'] == 1){
+            localStorage.setItem("info_users_plataforma",JSON.stringify(data));
             setTimeout(function(){
                 window.location.href = "./";
           },1000);  
+
+          }else{
+            $('#btn_login').text('Usuário desabilitado');
+          setTimeout(function(){
+            $('#btn_login').text('Entrar');
+            $('#btn_login').prop("disabled",false);
+          },1000); 
+          }
+          
+
+
+          console.log(data)
 
         }else{
 

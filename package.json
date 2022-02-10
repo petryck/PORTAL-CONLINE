@@ -23,6 +23,8 @@
     "nodemailer": "^6.6.3",
     "nodemon": "^2.0.12",
     "path": "^0.12.7",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6",
     "tedious": "^11.4.0"
   }
 }
