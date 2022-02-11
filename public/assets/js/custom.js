@@ -360,6 +360,21 @@ $(document).on('click', '.btn_ver', function(e) {
 			localStorage.setItem("icon-style", "false");
 		}
 	});
+
+
+
+	$(document).on("keyup", '.input_search', function () {  
+		var texto = $(this).val();
+		console.log(texto)
+
+		$(".lista_processos .teteu_e_o_brabo").css("display", "block");
+
+		$(".lista_processos .teteu_e_o_brabo").each(function(){
+			if($(this).text().toUpperCase().indexOf(texto.toUpperCase()) < 0)
+			   $(this).css("display", "none");
+		});
+	});
+
 	
 	$(document).on("click", '#myonoffswitch52', function () {    
 		if (this.checked) {
@@ -506,16 +521,6 @@ window.location.href = "./login";
 
 
 
-	$("#input_search").keyup(function(){
-		var texto = $(this).val();
-
-		$(".lista_processos .teteu_e_o_brabo").css("display", "block");
-
-		$(".lista_processos .teteu_e_o_brabo").each(function(){
-			if($(this).text().toUpperCase().indexOf(texto.toUpperCase()) < 0)
-			   $(this).css("display", "none");
-		});
-	});
 
  
 
