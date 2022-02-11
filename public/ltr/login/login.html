@@ -11,6 +11,18 @@
 </head>
 <body>
 
+  <div class="loading" style="opacity:0%;">
+    <div class="loading-text">
+      <span class="loading-text-words">S</span>
+      <span class="loading-text-words">I</span>
+      <span class="loading-text-words">R</span>
+      <span class="loading-text-words">I</span>
+      <span class="loading-text-words">U</span>
+      <span class="loading-text-words">S</span>
+      <!-- <span class="loading-text-words">G</span> -->
+    </div>
+  </div>
+
   <!-- <div class="dust-paarticle">
   
     <svg width="100%" id="dust-paarticle" height="100%" viewBox="0 0 885 455" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -196,11 +208,7 @@
         </div>
       </div> <!-- ./row -->
     </div>
-      <div id="div-1" class="div-1 "></div>
-      <div id="div-2" class="div-2 "></div>
-
-      <img class="aviao" src="/assets/img/aviao.png" alt="">
-      
+    
 
       <script src="assets/plugins/jquery/jquery.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.0/anime.min.js"></script>
@@ -208,6 +216,7 @@
       <script src="/ltr/login/script.js"></script>
 
       <script>
+        
         var db_local = localStorage.getItem("info_users_plataforma");
 
 if(localStorage.getItem("info_users_plataforma") == null){
@@ -240,7 +249,7 @@ if(localStorage.getItem("info_users_plataforma") == null){
         //   }, 4000);
 
         // })
-
+        
 $(document).on('click', '#btn_login', function(e){
 e.preventDefault();
 
@@ -261,13 +270,18 @@ $('#btn_login').prop("disabled",true);
         
         if(data != 'error'){
    
-          $('#btn_login').text('Entrando...');
+          // $('#btn_login').text('Aguarde...');
 
           if(data[0]['status'] == 1){
+      
+            $('.loading').css('width', '100%');
+
+            $('.loading').css('opacity', '100%');
+
             localStorage.setItem("info_users_plataforma",JSON.stringify(data));
             setTimeout(function(){
                 window.location.href = "./";
-          },1000);  
+          },2000);  
 
           }else{
             $('#btn_login').text('Usuário desabilitado');
@@ -279,7 +293,7 @@ $('#btn_login').prop("disabled",true);
           
 
 
-          console.log(data)
+       
 
         }else{
 
