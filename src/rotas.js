@@ -1187,7 +1187,7 @@ router.get('/headcargo_api', function (req, res) {
               if(err) {
                   throw err;
               }
-          }).on('requestCompleted',function(rowCount_transbodo, more2, rows_transbodo){
+          }).on('doneInProc',function(rowCount_transbodo, more2, rows_transbodo){
            
             var trans = [];
             var contun2 = 0;
@@ -1248,7 +1248,7 @@ router.get('/headcargo', function (req, res) {
         throw err;
     }
 })
-.on('requestCompleted',function(rowCount, more, rows){
+.on('doneInProc',function(rowCount, more, rows){
   driver = [];
   rows.forEach(function (column) {
 
