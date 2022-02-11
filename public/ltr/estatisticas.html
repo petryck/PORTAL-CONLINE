@@ -584,7 +584,7 @@
             <p class="mb-0 tx-24 mt-2">
               <b class="text-primary" id="total_fechados">- </b>
             </p>
-            <a href="index.html#" class="text-muted">Qui, 16 de Set de 2021</a>
+            <a href="#" id="time" class="text-muted ">-</a>
           </div>
           <div class="col-6">
             <img src="/assets/img/pngs/work.png" alt="image" class="best-emp">
@@ -927,6 +927,21 @@
 
 
 <script>
+
+
+
+    // dia  = data.getDate().toString().padStart(2, '0'),
+    // mes  = (data.getMonth()+1).toString().padStart(2, '0'), //+1 pois no getMonth Janeiro começa com zero.
+    // ano  = data.getFullYear();
+    var data = new Date();
+    day = ["Domingo", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"][data.getDay()];
+    date = data.getDate();
+    month = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"][data.getMonth()];
+    year = data.getFullYear();
+    hours = data.getHours();
+    min = data.getMinutes();
+
+    document.getElementById('time').innerHTML = `${day}, ${date} de ${month} de ${year} `;
 
 $('#nome_usuario').text(JSON.parse(localStorage.getItem("info_users_plataforma"))[0]['nome'])
 // $('#logo_empresa') avatar_empresa
