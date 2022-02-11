@@ -54,28 +54,28 @@ $.ajax({
 
 
 
-var acessos = db_local.acesso.split(',');
+// var acessos = db_local.acesso.split(',');
 
     
-for(var i=0; i<acessos.length; i++) { acessos[i] = +acessos[i]; } 
+// for(var i=0; i<acessos.length; i++) { acessos[i] = +acessos[i]; } 
 
-// ACESSO GERAL - 1
-// ACESSO ADM - 2
-// ACESSO TI - 3
+// // ACESSO GERAL - 1
+// // ACESSO ADM - 2
+// // ACESSO TI - 3
 
 
-acessos.forEach(element => {
+// acessos.forEach(element => {
 
-    if(element == 3 && acessos.indexOf(3) > -1){
-        // $('#menu_ti_btn').css('display', 'block');
+//     if(element == 3 && acessos.indexOf(3) > -1){
+//         // $('#menu_ti_btn').css('display', 'block');
       
-      }else if(element == 2 && acessos.indexOf(2) > -1){
+//       }else if(element == 2 && acessos.indexOf(2) > -1){
     
-      }else if(element == 1 && acessos.indexOf(1) > -1){
+//       }else if(element == 1 && acessos.indexOf(1) > -1){
       
-      }
+//       }
 
-});
+// });
 }
 
 

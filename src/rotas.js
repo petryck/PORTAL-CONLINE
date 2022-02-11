@@ -1076,7 +1076,7 @@ router.get('/headcargo_api_all', function (req, res) {
     sql = `SELECT * FROM vis_Tracking_Portal WHERE Numero_Processo = 'EM0150-21'`
     // sql = `SELECT TOP 100 * FROM vis_Tracking_Portal ORDER BY IdLogistica_House DESC`
   }else if(tipo = 'cliente'){
-    sql = `SELECT TOP 20 * FROM vis_Tracking_Portal WHERE IdCliente = ${referencia} OR IdImportador = ${referencia} ORDER BY Data_Abertura_Convertido DESC`
+    sql = `SELECT TOP 20 * FROM vis_Tracking_Portal WHERE IdCliente = ${referencia} OR IdImportador = ${referencia} OR IdExportador = ${referencia} ORDER BY Data_Abertura_Convertido DESC`
   }else{
     sql = `SELECT * FROM vis_Tracking_Portal WHERE Numero_Processo = 'EM0150-21'`
   }
@@ -1187,7 +1187,7 @@ router.get('/headcargo_api', function (req, res) {
               if(err) {
                   throw err;
               }
-          }).on('doneInProc',function(rowCount_transbodo, more2, rows_transbodo){
+          }).on('requestCompleted',function(rowCount_transbodo, more2, rows_transbodo){
            
             var trans = [];
             var contun2 = 0;
@@ -1220,6 +1220,7 @@ router.get('/headcargo_api', function (req, res) {
             res.json(driver);   
             }));
             
+            
                     
 })
 );
@@ -1247,7 +1248,7 @@ router.get('/headcargo', function (req, res) {
         throw err;
     }
 })
-.on('doneInProc',function(rowCount, more, rows){
+.on('requestCompleted',function(rowCount, more, rows){
   driver = [];
   rows.forEach(function (column) {
 
