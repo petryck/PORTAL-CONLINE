@@ -427,6 +427,12 @@ msg.Equipamento.forEach(element => {
 
 carrega_processos()
 
+$('.select2-search').select2({
+		placeholder: 'Escolha um',
+		searchInputPlaceholder: 'Pesquisar',
+		 width: '100%'
+	});
+
       })
       function carrega_processos(){
 	$.ajax({
