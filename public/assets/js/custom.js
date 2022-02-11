@@ -4,7 +4,14 @@ $(function() {
 console.log(window.innerWidth)
 
 
+$(document).on('click', '#log_off', function(e){
+e.preventDefault()
 
+localStorage.removeItem("info_users_plataforma");
+
+window.location.href = "./login";
+
+})
 
 $( window ).resize(function() {
 	if(window.innerWidth < 1920){
