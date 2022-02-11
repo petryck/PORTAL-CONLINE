@@ -1,6 +1,20 @@
 $(function() {
 	'use strict'
 
+console.log(window.innerWidth)
+
+
+
+
+$( window ).resize(function() {
+	if(window.innerWidth < 1920){
+		$('body').css('zoom', '75%');
+		
+	}else{
+		$('body').css('zoom', '100%');
+	}
+})
+
 
 if(!localStorage.getItem("info_users_plataforma") || localStorage.getItem("info_users_plataforma") == null){
 	// localStorage.removeItem("token")
