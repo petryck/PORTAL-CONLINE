@@ -268,7 +268,8 @@
           <div class="card-body" style="padding-bottom: 0px;height: 55px;">
             <form>
               <div class="form-group mb-0">
-                <label><strong>Lista de Processos</strong></label>
+                <label><strong>Lista de Processos <span data-placement="top" data-toggle="tooltip" title="" data-original-title="Sem utilizar os fitros será mostrado apenas 20 processos"> ﹖ </span></strong>
+                </label>
                
               </div>
             </form>
@@ -287,7 +288,7 @@
       </div>
 
 
-      <div class="col-9">
+      <div class="col-lg-12 col-xl-9 col-md-9">
         <div class="card custom-card page_processo">
          <div class="card-body" >
           <div class="error-bg">
@@ -332,19 +333,9 @@
 
 
 
-$(document).on("keyup", '.input_search', function () {  
-		var texto = $(this).val();
-		console.log(texto)
-
-		$(".lista_processos .teteu_e_o_brabo").css("display", "block");
-
-		$(".lista_processos .teteu_e_o_brabo").each(function(){
-			if($(this).text().toUpperCase().indexOf(texto.toUpperCase()) < 0)
-			   $(this).css("display", "none");
-		});
-	});
 
 
+$('[data-toggle="tooltip"]').tooltip()
 
       $('.data_mask').mask('99/99/9999');
 
