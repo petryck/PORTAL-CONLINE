@@ -1076,7 +1076,7 @@ router.get('/headcargo_api_all', function (req, res) {
     sql = `SELECT * FROM vis_Tracking_Portal WHERE Numero_Processo = 'EM0150-21'`
     // sql = `SELECT TOP 100 * FROM vis_Tracking_Portal ORDER BY IdLogistica_House DESC`
   }else if(tipo = 'cliente'){
-    sql = `SELECT * FROM vis_Tracking_Portal WHERE IdCliente = ${referencia} OR IdImportador = ${referencia} ORDER BY Data_Abertura_Convertido DESC`
+    sql = `SELECT TOP 20 * FROM vis_Tracking_Portal WHERE IdCliente = ${referencia} OR IdImportador = ${referencia} ORDER BY Data_Abertura_Convertido DESC`
   }else{
     sql = `SELECT * FROM vis_Tracking_Portal WHERE Numero_Processo = 'EM0150-21'`
   }
