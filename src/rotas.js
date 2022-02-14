@@ -806,9 +806,9 @@ router.get('/headrcargo_filtros', function (req, res) {
   var trans = [];
 
     if(saida_and != true){
-    sql = `SELECT * FROM vis_Tracking_Portal `+saida_sql+` IdCliente = `+empresa+` OR IdImportador = ${empresa} OR IdExportador = ${empresa}`;
+    sql = `SELECT * FROM vis_Tracking_Portal `+saida_sql+` IdCliente = `+empresa+` OR IdImportador = ${empresa} OR IdExportador = ${empresa} ORDER BY Data_Abertura_Convertido DESC`;
     }else{
-    sql = `SELECT * FROM vis_Tracking_Portal `+saida_sql+` AND (IdCliente = `+empresa+` OR IdImportador = ${empresa} OR IdExportador = ${empresa})`;
+    sql = `SELECT * FROM vis_Tracking_Portal `+saida_sql+` AND (IdCliente = `+empresa+` OR IdImportador = ${empresa} OR IdExportador = ${empresa}) ORDER BY Data_Abertura_Convertido DESC`;
     }
 
   
