@@ -1367,7 +1367,8 @@ router.get('/alterar_info_usuario', function (req, res) {
                                 telefone = '${opcoes.telefone}', 
                                 acesso_comercial = '${opcoes.comercial}',
                                 acesso_financeiro = '${opcoes.financeiro}',
-                                acesso_operacional = '${opcoes.operacional}', 
+                                acesso_operacional = '${opcoes.operacional}',
+                                funcao = '${opcoes.funcao}', 
                                 status = '${opcoes.status}', 
                                 acesso_documental = '${opcoes.documental}', 
                                 acesso_adminstrativo = '${opcoes.administrador}'
