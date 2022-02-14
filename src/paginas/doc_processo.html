@@ -67,13 +67,20 @@
           <div class="col-6">
        
             <strong>Cliente</strong>: <span id="cliente"></span>
+            
+            <span class="bl_direto">
+              <br>
+              <strong>Agente</strong>: <span id="agente"></span>
+            
+            </span>
             <br>
-            <strong>Agente</strong>: <span id="agente"></span>
-            <br>
+            
             <strong>Reserva</strong>: <span id="reserva"></span>
+
+            <span class="bl_direto">
             <br>
             <strong>HBL</strong>: <span id="hbl"></span>
-            
+          </span>
            
             
   
@@ -216,6 +223,13 @@ $.ajax({
       })
       .done(function(msg){
         console.log(msg)
+
+
+
+        if(msg.Master_Direto == true){
+          $('.bl_direto').css('display', 'none')
+        }
+        
 
      $('#cliente').html(msg.Cliente)
      $('#referencia').html(msg.Numero_Processo)
