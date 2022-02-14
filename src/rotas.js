@@ -792,11 +792,11 @@ router.get('/headrcargo_filtros', function (req, res) {
 
     if(retornos.status != 'vazio'){
       if(saida_and != true){
-      saida_sql += `Situacao_Embarque_Codigo = '`+retornos.status+`'`;
+      saida_sql += `Situacao_Embarque_Codigo = `+retornos.status+``;
       saida_where = true;
       saida_and = true;
       }else{
-        saida_sql += `AND Situacao_Embarque_Codigo = '`+retornos.status+`'`;
+        saida_sql += `AND Situacao_Embarque_Codigo = `+retornos.status+``;
         saida_where = true;
         saida_and = true;
       }
@@ -806,9 +806,9 @@ router.get('/headrcargo_filtros', function (req, res) {
   var trans = [];
 
     if(saida_and != true){
-    sql = `SELECT * FROM vis_Tracking_Portal `+saida_sql+` IdCliente = '`+empresa+`' OR IdImportador = ${empresa} OR IdExportador = ${empresa}`;
+    sql = `SELECT * FROM vis_Tracking_Portal `+saida_sql+` IdCliente = `+empresa+` OR IdImportador = ${empresa} OR IdExportador = ${empresa}`;
     }else{
-    sql = `SELECT * FROM vis_Tracking_Portal `+saida_sql+` AND (IdCliente = '`+empresa+`' OR IdImportador = ${empresa} OR IdExportador = ${empresa})`;
+    sql = `SELECT * FROM vis_Tracking_Portal `+saida_sql+` AND (IdCliente = `+empresa+` OR IdImportador = ${empresa} OR IdExportador = ${empresa})`;
     }
 
   
@@ -1076,7 +1076,7 @@ router.get('/headcargo_api_all', function (req, res) {
     sql = `SELECT * FROM vis_Tracking_Portal WHERE Numero_Processo = 'EM0150-21'`
     // sql = `SELECT TOP 100 * FROM vis_Tracking_Portal ORDER BY IdLogistica_House DESC`
   }else if(tipo = 'cliente'){
-    sql = `SELECT TOP 20 * FROM vis_Tracking_Portal WHERE IdCliente = ${referencia} OR IdImportador = ${referencia} OR IdExportador = ${referencia} ORDER BY Data_Abertura_Convertido DESC`
+    sql = `SELECT TOP 20 * FROM vis_Tracking_Portal WHERE Situacao_Embarque_Codigo NOT IN (4) AND (IdCliente = ${referencia} OR IdImportador = ${referencia} OR IdExportador = ${referencia}) ORDER BY Data_Abertura_Convertido DESC`
   }else{
     sql = `SELECT * FROM vis_Tracking_Portal WHERE Numero_Processo = 'EM0150-21'`
   }

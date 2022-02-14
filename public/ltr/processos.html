@@ -177,7 +177,7 @@
                                    </select>
                                 </div>
                                 <div class="form-group" style="width: 132px;"> 
-                                    <p class="mg-b-10" style="font-size: 13px;" >Status</p>
+                                    <p class="mg-b-10" style="font-size: 13px;" >Situação do Processo </p>
                                     <!-- <input type="text" style="margin-top: -10px;" class="form-control input-sm" name="status" placeholder="Referencia">  -->
                                     <select name="status" class="form-control select2-search">
                                       <option selected value="vazio"> ------ </option>
@@ -333,7 +333,7 @@
 
 
 
-
+$(".btn_filtro").prop("disabled",true);
 
 $('[data-toggle="tooltip"]').tooltip()
 
@@ -434,6 +434,9 @@ $('.select2-search').select2({
 	});
 
       })
+
+
+
       function carrega_processos(){
 	$.ajax({
 			url : "/headcargo_api_all",
@@ -500,6 +503,7 @@ $('.select2-search').select2({
 		  });
   
 		  $('[data-toggle="tooltip"]').tooltip()
+      $(".btn_filtro").prop("disabled",false);
 		  
 		})
   }
