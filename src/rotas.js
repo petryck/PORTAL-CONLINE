@@ -61,7 +61,7 @@ router.get('/', function (req, res) {
 
 router.get('/login', function (req, res) {
 
-  res.sendFile(appRoot + '/public/ltr/login/login.html');
+  res.sendFile(appRoot + '/public/ltr/index.html');
 });
 
 
