@@ -85,7 +85,8 @@
                   <img src="login_page/images/logo.png" width="300" alt="brand-logo">
                 </div>
 </div>
-<div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50" style="z-index: 99;">
+
+<div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50 form_logar" style="z-index: 99;">
 <form id="form_login" class="login100-form validate-form">
 <span class="login100-form-title p-b-59">
 Entrar
@@ -112,7 +113,7 @@ Entrar
 Acessar
 </button>
 </div>
-<a href="#" class="dis-block txt3 hov1 p-r-30 p-t-10 p-b-10 p-l-30">
+<a href="#" id="btn_vz_cadastrar" class="dis-block txt3 hov1 p-r-30 p-t-10 p-b-10 p-l-30">
 Cadastrar
 <i class="fa fa-long-arrow-right m-l-5"></i>
 </a>
@@ -123,6 +124,68 @@ Cadastrar
  <center> <h5 id="btn_messagem"></h5></center>
 </div>
 </div>
+
+
+<div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50 form_cad" style="z-index: 99;display: none;">
+  <form id="form_cadastro" class="login100-form validate-form">
+  <span class="login100-form-title p-b-59">
+  Solicitar acesso
+  </span>
+  
+
+
+  <div class="wrap-input100 validate-input " data-validate="Nome inválido">
+    <span class="label-input100">Nome</span>
+    <input class="input100" type="text" name="nome" placeholder="Nome completo">
+    <span class="focus-input100"></span>
+    </div>
+
+
+
+  <div class="wrap-input100 validate-input" data-validate="Email inválido">
+  <span class="label-input100">Email</span>
+  <input class="input100" type="text" name="email" placeholder="Endereço de email">
+  <span class="focus-input100"></span>
+  </div>
+  
+  <div class="wrap-input100 validate-input" data-validate="Senha inválida">
+  <span class="label-input100">Senha</span>
+  
+  <input class="input100" type="password" name="password" placeholder="*************">
+  <span class="focus-input100"></span>
+  </div>
+
+  <div class="wrap-input100 validate-input" data-validate="Empresa inválido">
+    <span class="label-input100">Empresa</span>
+    <input class="input100" type="text" name="empresa" placeholder="Nome da empresa">
+    <span class="focus-input100"></span>
+  </div>
+
+  <div class="wrap-input100 validate-input" data-validate="CNPJ inválido">
+    <span class="label-input100">CNPJ</span>
+    <input class="input100" type="text" name="cnpj" placeholder="CNPJ">
+    <span class="focus-input100"></span>
+  </div>
+  
+  
+  <div class="container-login100-form-btn">
+  <div class="wrap-login100-form-btn">
+  <div class="login100-form-bgbtn"></div>
+  <button id="btn_enviar" type="submit" class="login100-form-btn">
+  Enviar
+  </button>
+  </div>
+  <a href="#" id="btn_vz_acessar" class="dis-block txt3 hov1 p-r-30 p-t-10 p-b-10 p-l-30">
+  Acessar
+  <i class="fa fa-long-arrow-right m-l-5"></i>
+  </a>
+  </div>
+  </form>
+  
+  <div style="margin-top: 35px;">
+   <center> <h5 id="btn_messagem"></h5></center>
+  </div>
+  </div>
 </div>
 </div>
 
@@ -161,11 +224,75 @@ Cadastrar
 
 
 
-$(document).on('submit', '#form_login', function(e){
 
+$(document).on('click', '#btn_vz_acessar', function(e){
   e.preventDefault();
 
-  var form = $(this)
+  $('.form_logar').css('display','block')
+  $('.form_cad').css('display','none')
+
+
+  // btn_vz_acessar
+  // btn_vz_cadastrar
+
+  // form_cad
+  // form_logar
+})
+
+$(document).on('click', '#btn_vz_cadastrar', function(e){
+  e.preventDefault();
+
+  $('.form_logar').css('display','none')
+  $('.form_cad').css('display','block')
+
+
+  // btn_vz_acessar
+  // btn_vz_cadastrar
+
+  // form_cad
+  // form_logar
+})
+
+$(document).on('click', '#btn_enviar', function(e){
+  
+e.preventDefault();
+
+
+var form = $('#form_cadastro')
+
+// new_acesso
+
+$.ajax({
+      type: 'GET',
+      url: '/new_acesso',
+      data: form.serialize(),
+      contentType: 'application/json',
+      success: function (data) {
+        console.log(data)
+        $('#form_cadastro')[0].reset()
+        $('.form_logar').css('display','block')
+        $('.form_cad').css('display','none')
+
+        $('#btn_messagem').text('Suas informações foram envias para nossa equipe, aguarde nosso retorno.');
+        setTimeout(function(){
+          $('#btn_messagem').text('');
+        },5000); 
+
+      }
+    })
+
+console.log(form.serialize())
+})
+
+
+
+
+
+
+$(document).on('click', '#btn_acessar', function(e){
+  e.preventDefault();
+
+  var form = $('#form_login')
 
   $('#btn_messagem').text('Autenticando...');
   $.ajax({

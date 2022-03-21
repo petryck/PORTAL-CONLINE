@@ -1568,6 +1568,51 @@ router.get('/info_usuario', function (req, res) {
 });
 
 
+
+
+
+// LOGIN PAGE
+router.get('/new_acesso', function (req, res) {
+
+  console.log(req.query)
+  nome = req.query.nome;
+  email = req.query.email;
+  password = req.query.password;
+  empresa = req.query.empresa;
+  cnpj = req.query.cnpj;
+  data = new Date().getTime();
+
+
+  var sql = `INSERT INTO 
+                    usuarios_temp 
+                    (nome_temp,email_temp, senha_temp, empresa_temp, cnpj_temp, criacao_temp) 
+                    VALUES ('${nome}','${email}','${password}','${empresa}','${cnpj}','${data}') `;
+
+
+
+
+  connection.query(sql, function(err2, results){
+  
+  
+    if(results){
+      if(results.length > 0){
+        res.json(results);
+      
+      }else{
+        res.json('error');
+      }
+    }else{
+      res.json('error');
+    }
+      
+       
+  })
+
+});
+
+
+
+
 // LOGIN PAGE
 router.get('/query_login', function (req, res) {
 
