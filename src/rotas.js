@@ -59,6 +59,11 @@ router.get('/', function (req, res) {
   
 });
 
+router.get('/gerencia', function (req, res) {
+  res.sendFile(appRoot + '/public/gerencia.html');
+  
+});
+
 router.get('/login', function (req, res) {
 
   res.sendFile(appRoot + '/public/login.html');
@@ -1022,6 +1027,9 @@ router.get('/headrcargo_criar_filtros', function (req, res) {
 })
 
 
+
+
+
 router.get('/follow_list', function (req, res) {
   let processo = req.query.processo;
 
@@ -1271,6 +1279,49 @@ router.get('/headcargo', function (req, res) {
 
 });
 
+
+
+// INFO COLABORADORES
+router.get('/permissoes', function (req, res) {
+
+
+
+  var sql = "SELECT * FROM usuarios_temp";
+
+
+ connection.query(sql, function(err2, results){
+
+  var saida = {
+    "draw": 1,
+    "recordsTotal": 57,
+    "recordsFiltered": 57,
+    "data": [
+      {
+        "nome_temp": "Airi",
+        "email_temp": "Satou",
+        "empresa_temp": "Accountant",
+        "cnpj_temp": "Tokyo",
+        "criacao_temp": "28th Nov 08",
+      },
+      {
+        "nome_temp": "Airi",
+        "email_temp": "Satou",
+        "empresa_temp": "Accountant",
+        "cnpj_temp": "Tokyo",
+        "criacao_temp": "28th Nov 08",
+      }
+    ]
+  }
+
+
+
+   console.log(saida)
+   res.json(saida);
+ })
+
+ 
+
+});
 
 // INFO COLABORADORES
 router.get('/info_acessos', function (req, res) {
