@@ -185,7 +185,8 @@ const encoded = encodeURI(uri);
     }));
     
     
-    console.log(lat,long)
+  
+    
         console.log('foi alteração')
     
       }
@@ -287,7 +288,7 @@ router.get('/estatisticas_paises', function (req, res) {
 
         saida[contun2]['latLng'] = JSON.parse(column_trans_entro.value);
         
-        console.log(saida[contun2]['latLng'])
+     
 
       }
 
@@ -312,7 +313,7 @@ router.get('/estatisticas_paises', function (req, res) {
 }).on('requestCompleted',function(rowCount, more, rows){
 
 
-// console.log(trans)
+
 
 
 
@@ -330,7 +331,7 @@ res.json(saida);
 
 
 async function f1(name, idPais) {
-  console.log(name)
+
 
   // return true;
 
@@ -339,8 +340,8 @@ async function f1(name, idPais) {
     url: 'http://nominatim.openstreetmap.org/search.php?q='+name+'&format=jsonv2',
     json: true
   }, function(error, response, body) {
-  // console.log(body)
-  console.log('foi alteração')
+
+
     trans = [];
   
   
@@ -352,7 +353,7 @@ async function f1(name, idPais) {
 
   var lat = result_final[0]['lat'];
   var long = result_final[0]['lon'];
-  console.log(result_final)
+
 
 
 }
@@ -823,7 +824,6 @@ router.get('/headrcargo_filtros', function (req, res) {
 
   
 
-  console.log(sql)
 
   CONEXA_HEAD.execSql(new Request(sql, function(err, rowCount, rows){
     if(err) {
@@ -1028,6 +1028,46 @@ router.get('/headrcargo_criar_filtros', function (req, res) {
 
 
 
+router.get('/lista_todas_empresas', function (req, res) {
+  let processo = req.query.processo;
+
+  sql = `SELECT Nome, IdPessoa, Cpf_Cnpj FROM vis_Cliente  WHERE Ativo = 1 Order By Nome asc`
+
+  var trans = [];
+
+  CONEXA_HEAD.execSql(new Request(sql, function(err, rowCount, rows){
+    if(err) {
+        throw err;
+    }
+}).on('doneInProc',function(rowCount_transbodo, more2, rows_transbodo){
+
+  var contun2 = 0;
+  rows_transbodo.forEach(function (column_trans) {
+    trans[contun2] = {};
+    column_trans.forEach(function (column_trans_entro) {
+      // console.log(column_trans_entro.metadata.colName)
+
+      if(column_trans_entro.value == null){
+        column_trans_entro.value = '';
+      }
+
+      trans[contun2][column_trans_entro.metadata.colName] = column_trans_entro.value;
+
+      // console.log(column_trans_entro.metadata.colName, column_trans_entro.value)
+    });
+
+    contun2 = contun2 + 1;
+  })
+
+}).on('requestCompleted',function(rowCount, more, rows){
+
+
+   
+    res.json(trans);
+    
+  }));
+
+})
 
 
 router.get('/follow_list', function (req, res) {
@@ -1282,6 +1322,69 @@ router.get('/headcargo', function (req, res) {
 
 
 
+// INFO COLABORADORES
+router.get('/transferir_usuario', function (req, res) {
+
+
+
+  var sql = `INSERT INTO usuarios (nome, 
+                                  empresa,
+                                  email,
+                                  senha,
+                                  telefone,
+                                  status,
+                                  acesso_comercial,
+                                  acesso_operacional,
+                                  acesso_documental,
+                                  acesso_financeiro,
+                                  acesso_adminstrativo)
+                                  VALUES
+                                  ('${req.query.cad_nome}',
+                                  '${req.query.empresa_vinculada}',
+                                  '${req.query.cad_email}',
+                                  '${req.query.cad_senha}',
+                                  '${req.query.cad_telefone}',
+                                  '1',
+                                  '${req.query.comercial}',
+                                  '${req.query.operacional}',
+                                  '${req.query.documental}',
+                                  '${req.query.financeiro}',
+                                  '${req.query.administrador}')`;
+
+  connection.query(sql, function(err2, results){
+  
+
+  if(!err2){
+    var sql = `UPDATE usuarios_temp SET status_temp = 0 WHERE id_usuarios_temp = ${req.query.id_usuario}`;
+
+    connection.query(sql, function(err2, results2){
+ 
+    })
+    res.send('okay');
+  //   console.log(req.query.id_usuario)
+ 
+
+
+
+
+  }else{
+    res.send('error');
+  }
+    
+
+  })
+
+
+
+});
+
+
+function alterar_usuario(id){
+     
+
+}
+
+
 
 // INFO COLABORADORES
 router.get('/infos_temp', function (req, res) {
@@ -1300,7 +1403,7 @@ router.get('/permissoes', function (req, res) {
 
 
 
-  var sql = "SELECT * FROM usuarios_temp";
+  var sql = "SELECT * FROM usuarios_temp WHERE status_temp = 1";
 
 
  connection.query(sql, function(err2, results){
@@ -1320,7 +1423,7 @@ results.forEach(element => {
 numero_data = parseInt(element.criacao_temp)
 var date = new Date(numero_data); // create Date object
 
-console.log(element.telefone)
+
 
   var linhas = {
     "nome_temp": element.nome_temp,
@@ -1330,7 +1433,8 @@ console.log(element.telefone)
     "cnpj_temp": element.cnpj_temp,
     "criacao_temp": date.toLocaleString(),
     "acao": `<div class="btn-icon-list"> 
-    <button id="`+element.id_usuarios_temp+`" class="btn ripple btn-secondary btn-icon abri_infos"><i class="fe fe-briefcase"></i></button>
+    <button id="`+element.id_usuarios_temp+`" class="btn ripple btn-secondary btn-icon abri_infos"><i class="fa fa-pencil-square-o"></i></button>
+    
   </div>`
   }
 
@@ -1399,7 +1503,7 @@ router.get('/cadastrar_usuario', function (req, res) {
   usuario = req.query.usuario;
   empresa = req.query.empresa;
   // acessos = '';
-  console.log(opcoes.comercial)
+
 
   var sql = `INSERT INTO usuarios (nome, 
                                   ultimo_nome,
@@ -1429,8 +1533,7 @@ router.get('/cadastrar_usuario', function (req, res) {
 
   connection.query(sql, function(err2, results){
   
-console.log(err2)
-console.log(results)
+
   
     res.send('okay');
 
@@ -1572,8 +1675,7 @@ router.get('/query_empresa', function (req, res) {
 
 
   connection.query(sql, function(err2, results){
-    // console.log(sql)
-    // console.log(results)
+
    
 
 
@@ -1625,7 +1727,7 @@ router.get('/acessos_empresa', function (req, res) {
 
 
   connection.query(sql, function(err2, results){
-console.log(results)
+
     res.json(results);
        
   })
@@ -1658,7 +1760,8 @@ router.get('/info_usuario', function (req, res) {
 // LOGIN PAGE
 router.get('/new_acesso', function (req, res) {
 
-  console.log(req.query)
+
+  
   nome = req.query.nome;
   email = req.query.email;
   telefone = req.query.telefone;
