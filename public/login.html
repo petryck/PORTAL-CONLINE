@@ -266,8 +266,30 @@ e.preventDefault();
 
 var form = $('#form_cadastro')
 
-// new_acesso
+// $("#form_cadastro input").filter(function(e) {
+//   // var saida = $("#form_cadastro input")[e].val();
+//  if(this.value == ''){
+// return true;
+//  }
+// })
 
+
+var vazios = $("#form_cadastro input").filter(function() {
+            return !this.value;
+        }).get();
+
+        if (vazios.length) {
+
+          $('#btn_messagem').text('Existe campos em branco...');
+          setTimeout(function(){
+    $('#btn_messagem').text('');
+   },5000); 
+        
+            return false;
+
+
+        } else {
+            
 $.ajax({
       type: 'GET',
       url: '/new_acesso',
@@ -280,14 +302,21 @@ $.ajax({
         $('.form_cad').css('display','none')
 
         $('#btn_messagem').text('Suas informações foram envias para nossa equipe, aguarde nosso retorno.');
+
         setTimeout(function(){
           $('#btn_messagem').text('');
         },5000); 
 
       }
     })
+        }
 
-console.log(form.serialize())
+// console.log($('#form_cadastro').find('input')[0].val())
+
+// new_acesso
+
+
+
 })
 
 

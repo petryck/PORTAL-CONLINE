@@ -1281,6 +1281,20 @@ router.get('/headcargo', function (req, res) {
 
 
 
+
+
+// INFO COLABORADORES
+router.get('/infos_temp', function (req, res) {
+
+  var sql = `SELECT * FROM usuarios_temp WHERE id_usuarios_temp = ${req.query.id}`;
+
+
+  connection.query(sql, function(err2, results){
+    res.json(results);
+  })
+
+});
+
 // INFO COLABORADORES
 router.get('/permissoes', function (req, res) {
 
@@ -1291,31 +1305,50 @@ router.get('/permissoes', function (req, res) {
 
  connection.query(sql, function(err2, results){
 
-  var saida = {
-    "draw": 1,
-    "recordsTotal": 57,
-    "recordsFiltered": 57,
-    "data": [
-      {
-        "nome_temp": "Airi",
-        "email_temp": "Satou",
-        "empresa_temp": "Accountant",
-        "cnpj_temp": "Tokyo",
-        "criacao_temp": "28th Nov 08",
-      },
-      {
-        "nome_temp": "Airi",
-        "email_temp": "Satou",
-        "empresa_temp": "Accountant",
-        "cnpj_temp": "Tokyo",
-        "criacao_temp": "28th Nov 08",
+var saida = [];
+var data = [];
+saida['data'] = [];
+
+var infos = {
+        "draw": 1,
+        "recordsTotal": results.length,
+        "recordsFiltered": results.length
       }
-    ]
+  
+results.forEach(element => {
+
+numero_data = parseInt(element.criacao_temp)
+var date = new Date(numero_data); // create Date object
+
+console.log(element.telefone)
+
+  var linhas = {
+    "nome_temp": element.nome_temp,
+    "email_temp": element.email_temp,
+    "telefone": element.telefone_temp,
+    "empresa_temp": element.empresa_temp,
+    "cnpj_temp": element.cnpj_temp,
+    "criacao_temp": date.toLocaleString(),
+    "acao": `<div class="btn-icon-list"> 
+    <button id="`+element.id_usuarios_temp+`" class="btn ripple btn-secondary btn-icon abri_infos"><i class="fe fe-briefcase"></i></button>
+  </div>`
   }
 
+ 
+
+  data.push(linhas) 
+
+});
+
+  
 
 
-   console.log(saida)
+
+
+saida = infos;
+saida['data'] = data;
+
+  //  console.log(saida)
    res.json(saida);
  })
 
@@ -1628,16 +1661,18 @@ router.get('/new_acesso', function (req, res) {
   console.log(req.query)
   nome = req.query.nome;
   email = req.query.email;
+  telefone = req.query.telefone;
   password = req.query.password;
   empresa = req.query.empresa;
   cnpj = req.query.cnpj;
   data = new Date().getTime();
 
 
+
   var sql = `INSERT INTO 
                     usuarios_temp 
-                    (nome_temp,email_temp, senha_temp, empresa_temp, cnpj_temp, criacao_temp) 
-                    VALUES ('${nome}','${email}','${password}','${empresa}','${cnpj}','${data}') `;
+                    (nome_temp,email_temp, senha_temp, empresa_temp, cnpj_temp, criacao_temp, telefone_temp) 
+                    VALUES ('${nome}','${email}','${password}','${empresa}','${cnpj}','${data}','${telefone}') `;
 
 
 
