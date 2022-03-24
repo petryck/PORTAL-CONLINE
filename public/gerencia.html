@@ -37,6 +37,9 @@
     <link href="assets/plugins/sweet-alert/sweetalert.css" rel="stylesheet">
     <link href="//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet">
 
+    <link href="assets/plugins/notify/css/notifIt.css" rel="stylesheet">
+    
+
 
     
     <style>
@@ -200,11 +203,20 @@
             <span class="nav-label">Dashboard</span>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="liberacoes">
+            <a class="nav-link" id="btn_liberacoes" href="#">
               <span class="shape1"></span>
               <span class="shape2"></span>
               <i  class="ti-home sidemenu-icon"></i>
               <span class="sidemenu-label">Liberações</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" id="btn_usuarios" href="usuarios">
+              <span class="shape1"></span>
+              <span class="shape2"></span>
+              <i  class="ti-home sidemenu-icon"></i>
+              <span class="sidemenu-label">Usuarios</span>
             </a>
           </li>
        
@@ -641,45 +653,6 @@
       <div class="main-content side-content pt-0">
         <div class="container-fluid">
             <div class="inner-body">
-                <!-- Page Header --> 
-                <div class="page-header">
-                   <div>
-                      <h2 class="main-content-title tx-24 mg-b-5">Liberações de acesso</h2>
-                      <!-- <ol class="breadcrumb">
-                         <li class="breadcrumb-item"><a href="#">Maps &amp; Tables</a></li>
-                         <li class="breadcrumb-item active" aria-current="page">DataTable</li>
-                      </ol> -->
-                   </div>
-                
-                </div>
-                <!-- End Page Header --> <!-- Row --> 
-                <div class="row row-sm">
-                   <div class="col-lg-12">
-                      <div class="card custom-card overflow-hidden">
-                         <div class="card-body">
-                            <div>
-                               <h6 class="main-content-label mb-1">Tabela de liberações de acesso</h6>
-                               <p class="text-muted card-sub-title">Tabela de liberações de acesso ao sistema Sirius</p>
-                            </div>
-                            <table id="tabela_liberacoes" class="table table-bordered border-bottom dataTable no-footer" id="example1" role="grid" aria-describedby="example1_info">
-                                <thead>
-                                   <tr role="row">
-                                      <th class="wd-20p sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 268px;">Nome</th>
-                                      <th class="wd-25p sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 345.25px;">Email</th>
-                                      <th class="wd-25p sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 345.25px;">Telefone</th>
-                                      <th class="wd-20p sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 268px;">Empresa</th>
-                                      <th class="wd-15p sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 190.75px;">CNPJ</th>
-                                      <th class="wd-20p sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 268px;">Criação</th>
-                                      <th class="wd-20p sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 18.778px !important;">Ação</th>
-                                   </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                                </table>
-                         </div>
-                      </div>
-                   </div>
-                </div>
                
               
               
@@ -826,6 +799,8 @@
     <script src="assets/plugins/select2/js/select2.min.js"></script>
    
     <script src="assets/js/sticky.js"></script>
+
+   
    
     
    
@@ -847,7 +822,7 @@
   
 
 
-
+  <script src="assets/plugins/notify/js/notifIt.js"></script>
 
 
   <script src="assets/js/custom_gerencia.js"></script>

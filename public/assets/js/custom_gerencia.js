@@ -7,6 +7,11 @@ $( window ).resize(function() {
 	}
 })
 
+var tabela_liberacoes
+
+
+
+
 $("#global-loader").fadeOut("slow");
 
 // $('#tabela_liberacoes').DataTable({
@@ -21,24 +26,34 @@ $("#global-loader").fadeOut("slow");
 //     ]
 // });
 
+$.ajax({
+    url : "/liberacoes",
+    type : 'get',
+    beforeSend : function(){
+    }
+}).done(function(msg){
+    $('.inner-body').html(msg)
 
-$('#tabela_liberacoes').DataTable( {
-    "processing": true,
-    "serverSide": true,
-    "ajax": {
-        "url": "permissoes",
-        "type": "GET"
-    },
-    "columns": [
-        { "data": "nome_temp" },
-        { "data": "email_temp" },
-        { "data": "telefone" },
-        { "data": "empresa_temp" },
-        { "data": "cnpj_temp" },
-        { "data": "criacao_temp" },
-        { "data": "acao","width": "28px" }
-    ]
-} );
+    tabela_liberacoes = $('#tabela_liberacoes').DataTable( {
+   
+        "ajax": {
+            "url": "permissoes",
+            "type": "GET"
+        },
+        "columns": [
+            { "data": "nome_temp" },
+            { "data": "email_temp" },
+            { "data": "telefone" },
+            { "data": "empresa_temp" },
+            { "data": "cnpj_temp" },
+            { "data": "criacao_temp" },
+            { "data": "acao","width": "28px" }
+        ]
+    } );
+
+})
+
+
 
 
 
@@ -137,9 +152,14 @@ $(document).on('click', '.transferir_infos', function(e){
    
 
     setTimeout(() => {
-        $('#tabela_liberacoes').ajax.reload();
-        console.log('atualizou')
-    }, 10000);
+        tabela_liberacoes.ajax.reload();
+        notif({
+            type: "success",
+            msg: "Acesso liberado ao sistema",
+            position: "right",
+            fade: true
+        });
+    }, 2000);
 
 
 })
@@ -182,3 +202,56 @@ function transferir(){
     
         })
 }
+
+
+
+
+
+// btn_liberacoes
+// btn_usuarios
+
+
+
+
+$(document).on('click', '#btn_liberacoes', function(e){
+
+    e.preventDefault()
+    $.ajax({
+        url : "/liberacoes",
+        type : 'get',
+        beforeSend : function(){
+        }
+    }).done(function(msg){
+        $('.inner-body').html(msg)
+        tabela_liberacoes = $('#tabela_liberacoes').DataTable( {
+   
+            "ajax": {
+                "url": "permissoes",
+                "type": "GET"
+            },
+            "columns": [
+                { "data": "nome_temp" },
+                { "data": "email_temp" },
+                { "data": "telefone" },
+                { "data": "empresa_temp" },
+                { "data": "cnpj_temp" },
+                { "data": "criacao_temp" },
+                { "data": "acao","width": "28px" }
+            ]
+        } );
+    })
+})
+
+$(document).on('click', '#btn_usuarios', function(e){
+    e.preventDefault()
+ 
+    $.ajax({
+        url : "/lista_usuarios_portal",
+        type : 'get',
+        beforeSend : function(){
+        }
+    }).done(function(msg){
+        $('.inner-body').html(msg)
+    })
+})
+

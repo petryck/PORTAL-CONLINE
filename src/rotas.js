@@ -75,6 +75,18 @@ router.get('/globo', function (req, res) {
 });
 
 
+router.get('/liberacoes', function (req, res) {
+
+  res.sendFile(appRoot + '/public/pages/liberacoes.html');
+});
+
+router.get('/lista_usuarios_portal', function (req, res) {
+
+  res.sendFile(appRoot + '/public/pages/usuarios.html');
+});
+
+
+
 router.get('/pages_processos', function (req, res) {
   let referencia = req.query.ref;
 
