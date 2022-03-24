@@ -1339,6 +1339,9 @@ router.get('/transferir_usuario', function (req, res) {
 
   data = new Date().getTime();
 
+
+  enviar_email(req.query.cad_email, 'você foi ativado')
+
   var sql = `INSERT INTO usuarios (nome, 
                                   empresa,
                                   email,
@@ -1372,7 +1375,7 @@ router.get('/transferir_usuario', function (req, res) {
     var sql = `UPDATE usuarios_temp SET status_temp = 0 WHERE id_usuarios_temp = ${req.query.id_usuario}`;
 
     connection.query(sql, function(err2, results2){
- 
+      
     })
     res.send('okay');
   //   console.log(req.query.id_usuario)
@@ -1411,6 +1414,46 @@ router.get('/infos_temp', function (req, res) {
   })
 
 });
+
+
+function enviar_email(email, corpo){
+  
+  var remetente = nodemailer.createTransport({
+    name: 'marketing@conline-news.com',
+    host: 'mail.conline-news.com',
+    service:'mail.conline-news.com',
+    port: 465,
+    maxMessages: 10,
+    secure: true,
+    pool:true,
+    rateDelta:1000,
+    rateLimit: 1000,
+    auth:{
+    user: 'marketing@conline-news.com',
+    pass: 'conline191919aA@' },
+    tls: {
+      rejectUnauthorized: false
+    },
+    debug : true
+    });
+    
+    mailOptions = {
+      from: 'Sirius <marketing@conline-news.com>',
+      to: email,
+      subject: 'Sua conta está ativa - Sirius',
+      html: corpo
+    };
+
+    console.log(mailOptions)
+
+    
+    remetente.sendMail(mailOptions, function(error, info){
+
+      console.log(info)
+      console.log(error)
+      
+    })
+}
 
 
 
