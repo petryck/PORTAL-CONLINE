@@ -202,23 +202,30 @@
           <li class="nav-header">
             <span class="nav-label">Dashboard</span>
           </li>
+
+
           <li class="nav-item active">
-            <a class="nav-link" id="btn_liberacoes" href="#">
-              <span class="shape1"></span>
-              <span class="shape2"></span>
-              <i  class="ti-home sidemenu-icon"></i>
+            <a class="nav-link" id="btn_liberacoes" href="usuarios2">
+              <span class="shape21"></span>
+              <span class="shape21"></span>
+              <i  class="ti-server sidemenu-icon"></i>
               <span class="sidemenu-label">Liberações</span>
             </a>
           </li>
-
+         
           <li class="nav-item">
             <a class="nav-link" id="btn_usuarios" href="usuarios">
               <span class="shape1"></span>
               <span class="shape2"></span>
-              <i  class="ti-home sidemenu-icon"></i>
+              <i  class="ti-server sidemenu-icon"></i>
               <span class="sidemenu-label">Usuarios</span>
             </a>
           </li>
+
+          
+
+         
+
        
 
         
@@ -760,6 +767,111 @@
                                       <div class="col-lg-3 check-padding"> 
                                          <label class="ckbox">
                                             <input name="cad_administrador" type="checkbox">
+                                            <span>Administrador</span>
+                                         </label> 
+                                      </div>
+                                   </div>
+                                </div>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+            </form>
+          </div>
+          <div class="modal-footer">  <button class="btn ripple btn-primary" data-dismiss="modal" type="button">Cancelar</button> </div>
+       </div>
+    </div>
+ </div>
+
+
+ <div class="modal" id="modal_usuarios" style="padding-right: 3px;z-index: 2050 !important;" aria-modal="true" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+       <div class="modal-content modal-content-demo">
+          <div class="modal-header">
+             <h6 class="modal-title">Cadastrar usuário</h6>
+             <button class="btn ripple btn-success btn-icon transferir_infos"><i class="fa fa-random"></i></button>
+             <!-- <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">×</span></button>  -->
+          </div>
+          <div class="modal-body">
+            <form id="form_tranferencia">
+                <div class="row row-sm">
+                    <div class="col-lg-12 col-md-12">
+                       <div class="card custom-card">
+                          <div class="card-body">
+                             <!-- <div>
+                                <h6 class="main-content-label mb-1">Default Form Input Fields with labels</h6>
+                                <p class="text-muted card-sub-title">A form control with labels state.</p>
+                             </div> -->
+                             <div class="row row-sm formulario_usuarios">
+                                <div class="col-md-6">
+                                   <div class="form-group">
+                                      <p class="mg-b-10">Nome</p>
+                                      <input type="text" class="form-control" name="user_nome" placeholder="Nome"> 
+                                      <input type="text" class="form-control" name="user_id" style="display:none;" placeholder="Nome"> 
+                                      <input type="text" class="form-control" name="user_senha" style="display:none;" placeholder="Nome"> 
+                                   </div>
+                                   <div class="form-group">
+                                      <p class="mg-b-10">Email</p>
+                                      <input type="text" class="form-control" name="user_email" placeholder="Email"> 
+                                   </div>
+                                   <div class="form-group">
+                                    <p class="mg-b-10">Telefone</p>
+                                    <input type="text" class="form-control" name="user_telefone" placeholder="Telefone"> 
+                                 </div>
+                                   
+                                </div>
+                                <div class="col-md-6">
+                                   <div class="form-group" > 
+                                    <p class="mg-b-10" style="font-size: 13px;" >Empresa vinculada</p>
+                                    <!-- <input type="text" style="margin-top: -10px;" class="form-control input-sm" name="origem" placeholder="Origem">  -->
+                                    <select name="user_nome_empresa" class="form-control select2-search">
+                                      <option selected value="0"> ------ </option>
+                                   </select>
+                                </div>
+                                   
+    
+                                   
+                                  
+                                </div>
+                                <div class="col-md-6">
+                                 
+                                </div>
+                                <div class="col-md-3">
+                                  
+                                </div>
+                                <p class="text-muted card-sub-title" style="margin-left: 10px; padding-bottom: 10px;">Níveis de acesso</p>
+                                <div class="col-md-12 ">
+    
+                                   <div class="row row-sm">
+                                      <div class="col-lg-3 check-padding"> 
+                                         <label class="ckbox">
+                                            <input name="user_comercial" type="checkbox">
+                                            <span>Comercial</span>
+                                         </label> 
+                                      </div>
+                                      <div class="col-lg-3 check-padding"> 
+                                         <label class="ckbox">
+                                            <input name="user_operacional" type="checkbox">
+                                            <span>Operacional</span>
+                                         </label> 
+                                      </div>
+                                      <div class="col-lg-3 check-padding"> 
+                                         <label class="ckbox">
+                                            <input name="user_documental" type="checkbox">
+                                            <span>Documental</span>
+                                         </label> 
+                                      </div>
+                                      <div class="col-lg-3 check-padding" > 
+                                         <label class="ckbox">
+                                            <input name="user_financeiro" type="checkbox">
+                                            <span>Financeiro</span>
+                                         </label> 
+                                      </div>
+    
+                                      <div class="col-lg-3 check-padding"> 
+                                         <label class="ckbox">
+                                            <input name="user_administrador" type="checkbox">
                                             <span>Administrador</span>
                                          </label> 
                                       </div>

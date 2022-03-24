@@ -1337,7 +1337,7 @@ router.get('/headcargo', function (req, res) {
 // INFO COLABORADORES
 router.get('/transferir_usuario', function (req, res) {
 
-
+  data = new Date().getTime();
 
   var sql = `INSERT INTO usuarios (nome, 
                                   empresa,
@@ -1345,6 +1345,7 @@ router.get('/transferir_usuario', function (req, res) {
                                   senha,
                                   telefone,
                                   status,
+                                  data_criacao,
                                   acesso_comercial,
                                   acesso_operacional,
                                   acesso_documental,
@@ -1357,6 +1358,7 @@ router.get('/transferir_usuario', function (req, res) {
                                   '${req.query.cad_senha}',
                                   '${req.query.cad_telefone}',
                                   '1',
+                                  '${data}'
                                   '${req.query.comercial}',
                                   '${req.query.operacional}',
                                   '${req.query.documental}',
@@ -1407,6 +1409,73 @@ router.get('/infos_temp', function (req, res) {
   connection.query(sql, function(err2, results){
     res.json(results);
   })
+
+});
+
+
+
+// INFO COLABORADORES
+router.get('/usuarios_todos', function (req, res) {
+
+
+
+  var sql = "SELECT * FROM usuarios";
+
+
+ connection.query(sql, function(err2, results){
+
+var saida = [];
+var data = [];
+saida['data'] = [];
+
+var infos = {
+        "draw": 1,
+        "recordsTotal": results.length,
+        "recordsFiltered": results.length
+      }
+  
+results.forEach(element => {
+
+// numero_data = parseInt(element.criacao_temp)
+// var date = new Date(numero_data); // create Date object
+
+
+numero_data = parseInt(element.data_criacao)
+var date = new Date(numero_data); // create Date object
+
+
+
+  var linhas = {
+    "nome": element.nome,
+    "email": element.email,
+    "telefone": element.telefone,
+    "empresa": 'dsadsa',
+    "data_criacao": date.toLocaleString(),
+    "acao": `<div class="btn-icon-list"> 
+    <button id="`+element.idusuarios+`" class="btn ripple btn-secondary btn-icon abri_infos_usuarios"><i class="fa fa-pencil-square-o"></i></button>
+    
+  </div>`
+  }
+
+ 
+
+  data.push(linhas) 
+
+});
+
+  
+
+
+
+
+saida = infos;
+saida['data'] = data;
+
+  //  console.log(saida)
+   res.json(saida);
+ })
+
+ 
 
 });
 

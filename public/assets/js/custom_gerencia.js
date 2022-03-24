@@ -57,6 +57,39 @@ $.ajax({
 
 
 
+
+$(document).on('click', '.abri_infos_usuarios', function(e){
+    id = $(this).attr('id');
+
+    $.ajax({
+        url: '/infos_temp',
+        data : {id : id},
+        success: function(data) {
+          
+            $("input[type=text][name=cad_nome]").val(data[0]['nome_temp'])
+            $("input[type=text][name=cad_email]").val(data[0]['email_temp'])
+            $("input[type=text][name=cad_empresa_nome]").val(data[0]['empresa_temp'])
+            $("input[type=text][name=cad_cnpj]").val(data[0]['cnpj_temp'])
+            $("input[type=text][name=cad_telefone]").val(data[0]['telefone_temp'])
+            $("input[type=text][name=senha]").val(data[0]['senha_temp'])
+            $("input[type=text][name=id_usuario]").val(data[0]['id_usuarios_temp'])
+
+            // $('select[name=empresa_vinculada]').val(0)
+
+
+            $('select[name=empresa_vinculada]').val('0').trigger('change');
+           
+            $('#modal_info').modal('show')
+            $('.modal-backdrop').remove()  
+         
+        }
+      });
+
+
+       
+})
+
+
 $(document).on('click', '.abri_infos', function(e){
     id = $(this).attr('id');
 
@@ -252,6 +285,21 @@ $(document).on('click', '#btn_usuarios', function(e){
         }
     }).done(function(msg){
         $('.inner-body').html(msg)
+        tabela_usuarios = $('#tabela_usuarios').DataTable( {
+   
+            "ajax": {
+                "url": "usuarios_todos",
+                "type": "GET"
+            },
+            "columns": [
+                { "data": "nome" },
+                { "data": "email" },
+                { "data": "telefone" },
+                { "data": "empresa" },
+                { "data": "data_criacao" },
+                { "data": "acao","width": "28px" }
+            ]
+        } );
     })
 })
 
