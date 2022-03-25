@@ -1594,7 +1594,7 @@ var date = new Date(numero_data); // create Date object
     "nome": element.nome,
     "email": element.email,
     "telefone": element.telefone,
-    "empresa": 'dsadsa',
+    "empresa": element.empresa,
     "data_criacao": date.toLocaleString('pt-BR'),
     "acao": `<div class="btn-icon-list"> 
     <button id="`+element.idusuarios+`" class="btn ripple btn-secondary btn-icon abri_infos_usuarios"><i class="fa fa-pencil-square-o"></i></button>
