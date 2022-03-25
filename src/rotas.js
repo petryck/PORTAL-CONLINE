@@ -60,7 +60,14 @@ router.get('/', function (req, res) {
 });
 
 router.get('/gerencia', function (req, res) {
-  res.sendFile(appRoot + '/public/gerencia.html');
+  
+  if(req.query.login == 'admin' && req.query.senha == 'conline2510@'){
+    res.sendFile(appRoot + '/public/gerencia.html');
+  }else{
+    res.json('acesso negado')
+  }
+  
+  
   
 });
 
@@ -2023,7 +2030,7 @@ if(results){
 
 console.log('entrou')
 
-enviar_email('sirius_notifica@conlinebr.com.br', 'Novo usuário cadastrado <br> <b>Nome:</b> '+nome+' <br> <b>Email:</b> '+email+' <br> Acesse https://sirius.conlinebr.com.br/gerencia ')
+enviar_email('sirius_notifica@conlinebr.com.br', 'Novo usuário cadastrado <br> <b>Nome:</b> '+nome+' <br> <b>Email:</b> '+email+' <br> Acesse https://sirius.conlinebr.com.br/gerencia?login=admin&senha=conline2510@')
 
 
 
