@@ -1542,7 +1542,7 @@ function enviar_email(email, corpo){
     mailOptions = {
       from: 'Sirius <marketing@conline-news.com>',
       to: email,
-      subject: 'Sua conta está ativa - Sirius',
+      subject: 'Portal Sirius - ConLine',
       html: corpo
     };
 
@@ -1587,7 +1587,6 @@ results.forEach(element => {
 
 numero_data = parseInt(element.data_criacao)
 var date = new Date(numero_data); // create Date object
-
 
 
   var linhas = {
