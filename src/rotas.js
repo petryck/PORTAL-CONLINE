@@ -8,7 +8,7 @@ const router = express.Router();
 const mysql = require('mysql');
 var nodemailer = require('nodemailer');
 const request = require("request-promise");
-new Date().toLocaleString('pt-BR');
+
 // var nodemailer = require('nodemailer');
 
 // var remetente = nodemailer.createTransport({
@@ -1595,7 +1595,7 @@ var date = new Date(numero_data); // create Date object
     "email": element.email,
     "telefone": element.telefone,
     "empresa": 'dsadsa',
-    "data_criacao": date.toLocaleString(),
+    "data_criacao": date.toLocaleString('pt-BR'),
     "acao": `<div class="btn-icon-list"> 
     <button id="`+element.idusuarios+`" class="btn ripple btn-secondary btn-icon abri_infos_usuarios"><i class="fa fa-pencil-square-o"></i></button>
     
@@ -1657,7 +1657,7 @@ var date = new Date(numero_data); // create Date object
     "telefone": element.telefone_temp,
     "empresa_temp": element.empresa_temp,
     "cnpj_temp": element.cnpj_temp,
-    "criacao_temp": date.toLocaleString(),
+    "criacao_temp": date.toLocaleString('pt-BR'),
     "acao": `<div class="btn-icon-list"> 
     <button id="`+element.id_usuarios_temp+`" class="btn ripple btn-secondary btn-icon abri_infos"><i class="fa fa-pencil-square-o"></i></button>
     
