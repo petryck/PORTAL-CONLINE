@@ -132,6 +132,7 @@ Cadastrar
   Solicitar acesso
   </span>
   
+  
 
 
   <div class="wrap-input100 validate-input " data-validate="Nome inválido">
@@ -173,10 +174,11 @@ Cadastrar
     <span class="focus-input100"></span>
   </div>
   
-  
+  <center><span style="margin-top: -34px;color: red;font-weight: 700;" id="msg_alerta"></span></center>
   <div class="container-login100-form-btn">
   <div class="wrap-login100-form-btn">
   <div class="login100-form-bgbtn"></div>
+ 
   <button id="btn_enviar" type="submit" class="login100-form-btn">
   Enviar
   </button>
@@ -281,6 +283,7 @@ var vazios = $("#form_cadastro input").filter(function() {
         if (vazios.length) {
 
           $('#btn_messagem').text('Existe campos em branco...');
+
           setTimeout(function(){
     $('#btn_messagem').text('');
    },5000); 
@@ -297,6 +300,16 @@ $.ajax({
       contentType: 'application/json',
       success: function (data) {
         console.log(data)
+
+        if(data == 'email_existe'){
+          $('#msg_alerta').text('Email já cadastrado.');
+
+setTimeout(function(){
+  $('#msg_alerta').text('');
+},5000);
+
+        }else{
+
         $('#form_cadastro')[0].reset()
         $('.form_logar').css('display','block')
         $('.form_cad').css('display','none')
@@ -306,9 +319,12 @@ $.ajax({
         setTimeout(function(){
           $('#btn_messagem').text('');
         },5000); 
+        }
+       
 
       }
     })
+    
         }
 
 // console.log($('#form_cadastro').find('input')[0].val())

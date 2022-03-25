@@ -1337,10 +1337,99 @@ router.get('/headcargo', function (req, res) {
 // INFO COLABORADORES
 router.get('/transferir_usuario', function (req, res) {
 
-  data = new Date().getTime();
+  
 
 
-  enviar_email(req.query.cad_email, 'você foi ativado')
+  corpo_email = `<div id=":137" class="a3s aiL ">
+<div dir="ltr">
+   <div style="text-align:center">
+      <img src="https://sirius.conlinebr.com.br/img/header.png" alt="21161850-Recuperado584.png" width="524" height="340" style="margin-right:0px" data-image-whitelisted="" class="CToWUd a6T" tabindex="0">
+      <div class="a6S" dir="ltr" style="opacity: 0.01;">
+         <div id=":16m" class="T-I J-J5-Ji aQv T-I-ax7 L3 a5q" title="Fazer o download" role="button" tabindex="0" aria-label="Fazer o download do anexo 21161850-Recuperado584.png" data-tooltip-class="a1V">
+            <div class="akn">
+               <div class="aSK J-J5-Ji aYr"></div>
+            </div>
+         </div>
+         <div id=":16n" class="T-I J-J5-Ji aQv T-I-ax7 L3 a5q" title="Adicionar ao Google Drive" role="button" tabindex="0" aria-label="Adicionar anexo ao Drive: 21161850-Recuperado584.png" jslog="119524; u014N:cOuCgd,xr6bB; 43:WyJpbWFnZS9wbmciLDEyNTg1OTld" data-tooltip-class="a1V">
+            <div class="akn">
+               <div class="wtScjd XG J-J5-Ji aYr">
+                  <div class="T-aT4">
+                     <div></div>
+                     <div class="T-aT4-JX"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id=":16p" class="T-I J-J5-Ji aQv T-I-ax7 L3 a5q" role="button" tabindex="0" aria-label="Salvar uma cópia no Fotos" jslog="54186; u014N:cOuCgd,xr6bB; 43:WyJpbWFnZS9wbmciLDEyNTg1OTld" data-tooltip-class="a1V" data-tooltip="Salvar uma cópia no Fotos">
+            <div class="akn">
+               <div class="J-J5-Ji aYr akS">
+                  <div class="T-aT4" style="display: none;">
+                     <div></div>
+                     <div class="T-aT4-JX"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <br>
+   </div>
+   <div style="text-align:center"><br></div>
+   <div style="text-align:center"><b><font size="4">Olá `+req.query.cad_nome+`, tudo bem?</font></b></div>
+   <div style="text-align:center"><b><br></b></div>
+   <div style="text-align:center">Sua conta está ativa em nossa plataforma <b>SIRIUS</b> </div>
+   <div style="text-align:center">Email: <b>`+req.query.cad_email+`</b>, &nbsp;</div>
+   <div style="text-align:center">Senha: <b>`+req.query.cad_senha+`</b></div>
+   <div style="text-align:center"><br></div>
+   <div style="text-align:center">Você pode alterar sua senha direto em nossa plataforma <b>SIRIUS</b> .</div>
+   <div style="text-align:center"><a href="https://sirius.conlinebr.com.br">ACESSE AGORA PORTAL SIRIUS</a></div>
+   <div style="text-align:center"><br></div>
+
+   <div style="text-align:center">Tudo ficou mais prático e ágil! <b>Espia aqui o que estamos preparando para você -</b>&nbsp;<a href="https://youtu.be/zk4Vu1LCBPo" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://youtu.be/zk4Vu1LCBPo&amp;source=gmail&amp;ust=1648239590584000&amp;usg=AOvVaw1qa66RPMgeIWUk6yCsVsGv">https://youtu.be/zk4Vu1LCBPo</a></div>
+   
+   <div style="text-align:center"><br></div>
+   <div style="text-align:center">
+      <img src="https://sirius.conlinebr.com.br/img/rodape.png" alt="Sirius lançamento.png" width="597" height="198" style="margin-right:0px" data-image-whitelisted="" class="CToWUd a6T" tabindex="0">
+      <div class="a6S" dir="ltr" style="opacity: 0.01;">
+         <div id=":16c" class="T-I J-J5-Ji aQv T-I-ax7 L3 a5q" title="Fazer o download" role="button" tabindex="0" aria-label="Fazer o download do anexo Sirius lançamento.png" data-tooltip-class="a1V">
+            <div class="akn">
+               <div class="aSK J-J5-Ji aYr"></div>
+            </div>
+         </div>
+         <div id=":16d" class="T-I J-J5-Ji aQv T-I-ax7 L3 a5q" title="Adicionar ao Google Drive" role="button" tabindex="0" aria-label="Adicionar anexo ao Drive: Sirius lançamento.png" jslog="119524; u014N:cOuCgd,xr6bB; 43:WyJpbWFnZS9wbmciLDg1MDQ1MV0." data-tooltip-class="a1V">
+            <div class="akn">
+               <div class="wtScjd XG J-J5-Ji aYr">
+                  <div class="T-aT4">
+                     <div></div>
+                     <div class="T-aT4-JX"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id=":16f" class="T-I J-J5-Ji aQv T-I-ax7 L3 a5q" role="button" tabindex="0" aria-label="Salvar uma cópia no Fotos" jslog="54186; u014N:cOuCgd,xr6bB; 43:WyJpbWFnZS9wbmciLDg1MDQ1MV0." data-tooltip-class="a1V" data-tooltip="Salvar uma cópia no Fotos">
+            <div class="akn">
+               <div class="J-J5-Ji aYr akS">
+                  <div class="T-aT4" style="display: none;">
+                     <div></div>
+                     <div class="T-aT4-JX"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <br>
+   </div>
+   <div style="text-align:center"><br></div>
+   <div style="text-align:center"><br></div>
+   <div style="text-align:center"><br></div>
+   <div style="text-align:center"><br></div>
+</div>
+<div class="adL"></div>
+</div>`
+
+
+data = new Date().getTime();
+
+  enviar_email(req.query.cad_email, corpo_email)
 
   var sql = `INSERT INTO usuarios (nome, 
                                   empresa,
@@ -1361,7 +1450,7 @@ router.get('/transferir_usuario', function (req, res) {
                                   '${req.query.cad_senha}',
                                   '${req.query.cad_telefone}',
                                   '1',
-                                  '${data}'
+                                  '${data}',
                                   '${req.query.comercial}',
                                   '${req.query.operacional}',
                                   '${req.query.documental}',
@@ -1370,14 +1459,18 @@ router.get('/transferir_usuario', function (req, res) {
 
   connection.query(sql, function(err2, results){
   
+    
 
   if(!err2){
+ 
     var sql = `UPDATE usuarios_temp SET status_temp = 0 WHERE id_usuarios_temp = ${req.query.id_usuario}`;
 
     connection.query(sql, function(err2, results2){
-      
+
+
+      res.send('okay');
     })
-    res.send('okay');
+    
   //   console.log(req.query.id_usuario)
  
 
@@ -1385,6 +1478,7 @@ router.get('/transferir_usuario', function (req, res) {
 
 
   }else{
+  
     res.send('error');
   }
     
@@ -1444,13 +1538,13 @@ function enviar_email(email, corpo){
       html: corpo
     };
 
-    console.log(mailOptions)
+
 
     
     remetente.sendMail(mailOptions, function(error, info){
 
       console.log(info)
-      console.log(error)
+      // console.log(error)
       
     })
 }
@@ -1895,31 +1989,165 @@ router.get('/new_acesso', function (req, res) {
   data = new Date().getTime();
 
 
-
-  var sql = `INSERT INTO 
-                    usuarios_temp 
-                    (nome_temp,email_temp, senha_temp, empresa_temp, cnpj_temp, criacao_temp, telefone_temp) 
-                    VALUES ('${nome}','${email}','${password}','${empresa}','${cnpj}','${data}','${telefone}') `;
+  var sql = `SELECT * FROM usuarios_temp WHERE email_temp = '${email}'`;
 
 
+  connection.query(sql, function(err2, results_temp){
 
-
-  connection.query(sql, function(err2, results){
-  
-  
-    if(results){
-      if(results.length > 0){
-        res.json(results);
+    if(results_temp.length > 0){
       
-      }else{
-        res.json('error');
-      }
+      res.json('email_existe');
+      return true;   
     }else{
-      res.json('error');
-    }
-      
+
+      var sql = `SELECT * FROM usuarios_temp WHERE email_temp = '${email}'`;
+
+
+      connection.query(sql, function(err2, results_user){
+        if(results_temp.length > 0){
+
+
+
+
+          var sql = `INSERT INTO 
+          usuarios_temp 
+          (nome_temp,email_temp, senha_temp, empresa_temp, cnpj_temp, criacao_temp, telefone_temp) 
+          VALUES ('${nome}','${email}','${password}','${empresa}','${cnpj}','${data}','${telefone}') `;
+
+
+
+
+connection.query(sql, function(err2, results){
+
+if(results){
+
+console.log('entrou')
+
+enviar_email('sirius_notifica@conlinebr.com.br', 'Novo usuário cadastrado <br> <b>Nome:</b> '+nome+' <br> <b>Email:</b> '+email+' <br> Acesse https://sirius.conlinebr.com.br/gerencia ')
+
+
+
+corpo_email = `<div id=":137" class="a3s aiL ">
+<div dir="ltr">
+ <div style="text-align:center">
+    <img src="https://sirius.conlinebr.com.br/img/header.png" alt="21161850-Recuperado584.png" width="524" height="340" style="margin-right:0px" data-image-whitelisted="" class="CToWUd a6T" tabindex="0">
+    <div class="a6S" dir="ltr" style="opacity: 0.01;">
+       <div id=":16m" class="T-I J-J5-Ji aQv T-I-ax7 L3 a5q" title="Fazer o download" role="button" tabindex="0" aria-label="Fazer o download do anexo 21161850-Recuperado584.png" data-tooltip-class="a1V">
+          <div class="akn">
+             <div class="aSK J-J5-Ji aYr"></div>
+          </div>
+       </div>
+       <div id=":16n" class="T-I J-J5-Ji aQv T-I-ax7 L3 a5q" title="Adicionar ao Google Drive" role="button" tabindex="0" aria-label="Adicionar anexo ao Drive: 21161850-Recuperado584.png" jslog="119524; u014N:cOuCgd,xr6bB; 43:WyJpbWFnZS9wbmciLDEyNTg1OTld" data-tooltip-class="a1V">
+          <div class="akn">
+             <div class="wtScjd XG J-J5-Ji aYr">
+                <div class="T-aT4">
+                   <div></div>
+                   <div class="T-aT4-JX"></div>
+                </div>
+             </div>
+          </div>
+       </div>
+       <div id=":16p" class="T-I J-J5-Ji aQv T-I-ax7 L3 a5q" role="button" tabindex="0" aria-label="Salvar uma cópia no Fotos" jslog="54186; u014N:cOuCgd,xr6bB; 43:WyJpbWFnZS9wbmciLDEyNTg1OTld" data-tooltip-class="a1V" data-tooltip="Salvar uma cópia no Fotos">
+          <div class="akn">
+             <div class="J-J5-Ji aYr akS">
+                <div class="T-aT4" style="display: none;">
+                   <div></div>
+                   <div class="T-aT4-JX"></div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+    <br>
+ </div>
+ <div style="text-align:center"><br></div>
+ <div style="text-align:center"><b><font size="4">Olá `+nome+`, tudo bem?</font></b></div>
+ <div style="text-align:center"><b><br></b></div>
+ <div style="text-align:center">Agradecemos seu cadastro em nossa plataforma. </div>
+ <div style="text-align:center">Sua conta está sendo <b>verificada</b>, em breve retornaremos com a aprovação do seu acesso. </div>
+ <div style="text-align:center">Email: <b>`+email+`</b>, &nbsp;</div>
+ <div style="text-align:center"><br></div>
+ <div style="text-align:center"><a href="https://sirius.conlinebr.com.br">PORTAL SIRIUS</a></div>
+ <div style="text-align:center"><br></div>
+
+ <div style="text-align:center">Tudo ficou mais prático e ágil! <b>Espia aqui o que estamos preparando para você -</b>&nbsp;<a href="https://youtu.be/zk4Vu1LCBPo" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://youtu.be/zk4Vu1LCBPo&amp;source=gmail&amp;ust=1648239590584000&amp;usg=AOvVaw1qa66RPMgeIWUk6yCsVsGv">https://youtu.be/zk4Vu1LCBPo</a></div>
+ 
+ <div style="text-align:center"><br></div>
+ <div style="text-align:center">
+    <img src="https://sirius.conlinebr.com.br/img/rodape.png" alt="Sirius lançamento.png" width="597" height="198" style="margin-right:0px" data-image-whitelisted="" class="CToWUd a6T" tabindex="0">
+    <div class="a6S" dir="ltr" style="opacity: 0.01;">
+       <div id=":16c" class="T-I J-J5-Ji aQv T-I-ax7 L3 a5q" title="Fazer o download" role="button" tabindex="0" aria-label="Fazer o download do anexo Sirius lançamento.png" data-tooltip-class="a1V">
+          <div class="akn">
+             <div class="aSK J-J5-Ji aYr"></div>
+          </div>
+       </div>
+       <div id=":16d" class="T-I J-J5-Ji aQv T-I-ax7 L3 a5q" title="Adicionar ao Google Drive" role="button" tabindex="0" aria-label="Adicionar anexo ao Drive: Sirius lançamento.png" jslog="119524; u014N:cOuCgd,xr6bB; 43:WyJpbWFnZS9wbmciLDg1MDQ1MV0." data-tooltip-class="a1V">
+          <div class="akn">
+             <div class="wtScjd XG J-J5-Ji aYr">
+                <div class="T-aT4">
+                   <div></div>
+                   <div class="T-aT4-JX"></div>
+                </div>
+             </div>
+          </div>
+       </div>
+       <div id=":16f" class="T-I J-J5-Ji aQv T-I-ax7 L3 a5q" role="button" tabindex="0" aria-label="Salvar uma cópia no Fotos" jslog="54186; u014N:cOuCgd,xr6bB; 43:WyJpbWFnZS9wbmciLDg1MDQ1MV0." data-tooltip-class="a1V" data-tooltip="Salvar uma cópia no Fotos">
+          <div class="akn">
+             <div class="J-J5-Ji aYr akS">
+                <div class="T-aT4" style="display: none;">
+                   <div></div>
+                   <div class="T-aT4-JX"></div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+    <br>
+ </div>
+ <div style="text-align:center"><br></div>
+ <div style="text-align:center"><br></div>
+ <div style="text-align:center"><br></div>
+ <div style="text-align:center"><br></div>
+</div>
+<div class="adL"></div>
+</div>`
+
+
+setTimeout(() => {
+enviar_email(email, corpo_email)
+}, 5000);
+res.json(results);
+
+
+}else{
+console.log('entrou aqui 2')
+res.json('error');
+}
+
+
+})
+
+
+
+
+        }else{
+          
+          res.json('email_existe');
+          return true;
+        }
        
+        
+      })
+
+
+    }
+
+    
   })
+
+
+
+
 
 });
 
