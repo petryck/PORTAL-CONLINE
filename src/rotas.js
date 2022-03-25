@@ -2000,18 +2000,23 @@ router.get('/new_acesso', function (req, res) {
 
 
   connection.query(sql, function(err2, results_temp){
-
-    if(results_temp.length > 0){
+    
+console.log('verificando emails 1 temp -> '+ results_temp.length)
+    if(results_temp.length != 0){
       
       res.json('email_existe');
-      return true;   
+      return true;  
+
     }else{
 
-      var sql = `SELECT * FROM usuarios_temp WHERE email_temp = '${email}'`;
+      var sql = `SELECT * FROM usuarios WHERE email = '${email}'`;
 
 
       connection.query(sql, function(err2, results_user){
-        if(results_temp.length > 0){
+
+        console.log('verificando emails 2 temp -> '+ results_user.length)
+
+        if(results_user.length == 0){
 
 
 
