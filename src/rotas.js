@@ -8,6 +8,7 @@ const router = express.Router();
 const mysql = require('mysql');
 var nodemailer = require('nodemailer');
 const request = require("request-promise");
+new Date().toLocaleString('pt-BR');
 // var nodemailer = require('nodemailer');
 
 // var remetente = nodemailer.createTransport({
