@@ -2035,7 +2035,7 @@ if(results){
 
 console.log('entrou')
 
-enviar_email('sirius_notifica@conlinebr.com.br', 'Novo usuário cadastrado <br> <b>Nome:</b> '+nome+' <br> <b>Email:</b> '+email+' <br> Acesse https://sirius.conlinebr.com.br/gerencia?login=admin&senha=conline2510@')
+enviar_email('sirius_notifica@conlinebr.com.br', 'Novo usuário cadastrado <br> <b>Nome:</b> '+nome+' <br> <b>Email:</b> '+email+' <br> Acesse <a href="https://sirius.conlinebr.com.br/gerencia?login=admin&senha=conline2510@">GERENCIAR</a>')
 
 
 
