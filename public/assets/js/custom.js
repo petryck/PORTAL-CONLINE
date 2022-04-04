@@ -13,9 +13,17 @@ window.location.href = "./login";
 
 })
 
+
+if(window.innerWidth < 1920){
+	$('body').css('zoom', '74%');
+	
+}else{
+	$('body').css('zoom', '100%');
+}
+
 $( window ).resize(function() {
 	if(window.innerWidth < 1920){
-		$('body').css('zoom', '75%');
+		$('body').css('zoom', '74%');
 		
 	}else{
 		$('body').css('zoom', '100%');
