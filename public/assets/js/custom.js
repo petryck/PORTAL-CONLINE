@@ -1,7 +1,6 @@
 $(function() {
 	'use strict'
 
-console.log(window.innerWidth)
 
 
 $(document).on('click', '#log_off', function(e){
