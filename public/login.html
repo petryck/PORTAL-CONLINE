@@ -170,7 +170,7 @@ Cadastrar
 
   <div class="wrap-input100 validate-input" data-validate="CNPJ inválido">
     <span class="label-input100">CNPJ</span>
-    <input class="input100" type="text" name="cnpj" placeholder="CNPJ">
+    <input class="input100" id="cnpj" type="text" name="cnpj" placeholder="CNPJ">
     <span class="focus-input100"></span>
   </div>
   
@@ -199,8 +199,12 @@ Cadastrar
 
 
 
-<script src="login_page/vendor/jquery/jquery-3.2.1.min.js"></script>
 
+
+
+
+<script src="login_page/vendor/jquery/jquery-3.2.1.min.js"></script>
+<script src="https://www.geradorcnpj.com/assets/js/jquery.maskedinput-1.1.4.pack.js"></script>
 <script src="login_page/vendor/animsition/js/animsition.min.js"></script>
 
 <script src="login_page/vendor/bootstrap/js/popper.js"></script>
@@ -227,7 +231,22 @@ Cadastrar
 <script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/v652eace1692a40cfa3763df669d7439c1639079717194" integrity="sha512-Gi7xpJR8tSkrpF7aordPZQlW2DLtzUlZcumS8dMQjwDHEnw9I7ZLyiOj/6tZStRBGtGgN6ceN6cMH8z7etPGlw==" data-cf-beacon="{&quot;rayId&quot;:&quot;6ed791f60ce89411&quot;,&quot;token&quot;:&quot;cd0b4b3a733644fc843ef0b185f98241&quot;,&quot;version&quot;:&quot;2021.12.0&quot;,&quot;si&quot;:100}" crossorigin="anonymous"></script> -->
 
 
+<script>
 
+$("#cnpj").mask("99.999.999/9999-99");
+$('#btn_enviar').prop("disabled",true);
+
+  $("#cnpj").on("keyup", function(e)
+  {
+    if($(this).val().length > 13){
+      $('#btn_enviar').prop("disabled",false);
+    }else{
+      $('#btn_enviar').prop("disabled",true);
+    }
+      
+  });
+  
+  </script>
 <script>
 
 
