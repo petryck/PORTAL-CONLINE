@@ -1586,7 +1586,9 @@ results.forEach(element => {
 
 
 numero_data = parseInt(element.data_criacao)
-var date = new Date(numero_data); // create Date object
+var date = new Date(numero_data);
+numero_data_ultimo = parseInt(element.ultimo_login)
+var date_login = new Date(numero_data_ultimo); // create Date object
 
 
   var linhas = {
@@ -1594,6 +1596,7 @@ var date = new Date(numero_data); // create Date object
     "email": element.email,
     "telefone": element.telefone,
     "empresa": element.empresa,
+    "ultimo_login": date_login.toLocaleString('pt-BR'),
     "data_criacao": date.toLocaleString('pt-BR'),
     "acao": `<div class="btn-icon-list"> 
     <button id="`+element.idusuarios+`" class="btn ripple btn-secondary btn-icon abri_infos_usuarios"><i class="fa fa-pencil-square-o"></i></button>
@@ -2171,8 +2174,7 @@ router.get('/query_login', function (req, res) {
 
   email = req.query.username;
   password = req.query.password;
-
- 
+  data_login = new Date().getTime();
 
   var sql = `SELECT * FROM usuarios WHERE email = '${email}' AND senha = '${password}' LIMIT 1`;
 
@@ -2181,6 +2183,14 @@ router.get('/query_login', function (req, res) {
   
     if(results){
       if(results.length > 0){
+        
+    console.log
+        var sql2 = `UPDATE usuarios SET ultimo_login = ${data_login} WHERE idusuarios = ${results[0].idusuarios}`;
+        connection.query(sql2, function(err2, results){
+          console.log(err2)
+          console.log(results)
+
+        })
         res.json(results);
       
       }else{

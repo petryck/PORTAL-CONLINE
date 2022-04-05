@@ -296,6 +296,7 @@ $(document).on('click', '#btn_usuarios', function(e){
                 { "data": "email" },
                 { "data": "telefone" },
                 { "data": "empresa" },
+                { "data": "ultimo_login" },
                 { "data": "data_criacao" },
                 { "data": "acao","width": "28px" }
             ]
