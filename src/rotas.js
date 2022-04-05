@@ -1656,7 +1656,7 @@ var date = new Date(numero_data); // create Date object
     "telefone": element.telefone_temp,
     "empresa_temp": element.empresa_temp,
     "cnpj_temp": element.cnpj_temp,
-    "criacao_temp": date.toLocaleString('pt-BR'),
+    "criacao_temp": date.toLocaleString(),
     "acao": `<div class="btn-icon-list"> 
     <button id="`+element.id_usuarios_temp+`" class="btn ripple btn-secondary btn-icon abri_infos"><i class="fa fa-pencil-square-o"></i></button>
     
@@ -2024,7 +2024,7 @@ console.log('verificando emails 1 temp -> '+ results_temp.length)
           var sql = `INSERT INTO 
           usuarios_temp 
           (nome_temp,email_temp, senha_temp, empresa_temp, cnpj_temp, criacao_temp, telefone_temp) 
-          VALUES ('${nome}','${email}','${password}','${empresa}','${cnpj}','${data}','${telefone}') `;
+          VALUES ('${nome}','${email}','${password}','${empresa}','${cnpj}','${data}','${telefone}')`;
 
 
 
